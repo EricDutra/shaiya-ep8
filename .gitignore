@@ -1,0 +1,67 @@
+.vs/
+.vscode/
+*.VC.db
+*.VC.opendb
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+Debug/
+Release/
+x64/
+x86/
+ARM/
+ARM64/
+
+out/
+build/
+
+*.obj
+*.pch
+*.pdb
+*.idb
+*.ilk
+*.ipdb
+*.iobj
+*.log
+*.tlog
+*.lastbuildstate
+*.exp
+*.lib
+
+# DLL / EXE
+*.exe
+*.dll
+
+# Intermediate files
+ipch/
+*.cache
+*.tmp
+*.temp
+*.aps
+*.ncb
+
+# Visual Studio C++
+*.VC.db
+*.VC.opendb
+*.sdf
+*.opensdf
+*.db
+
+# CMake / Ninja
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.ninja
+.ninja_log
+.ninja_deps
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
