@@ -18,6 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\dllmain.cpp" />
+    <ClCompile Include="src\Utils\Memory.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Utils\Memory.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -110,6 +117,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>D:\Source Codes\shaiya-ep8\shaiya-ep8;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -134,14 +142,6 @@
       <EnableUAC>false</EnableUAC>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="Utils\Memory.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Packets\CharacterSelectScreen.h" />
-    <ClInclude Include="Utils\Memory.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

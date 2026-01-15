@@ -27,18 +27,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
+    <ClCompile Include="src\dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utils\Memory.cpp">
+    <ClCompile Include="src\Utils\Memory.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Packets\CharacterSelectScreen.h">
-      <Filter>Header Files\Packets</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\Memory.h">
+    <ClInclude Include="include\Utils\Memory.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
