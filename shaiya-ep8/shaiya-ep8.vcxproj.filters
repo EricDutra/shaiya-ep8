@@ -13,30 +13,81 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Packets">
-      <UniqueIdentifier>{b694fd43-dee0-4eda-a190-de6cfe9e3854}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Packets">
-      <UniqueIdentifier>{4f064416-188d-45ba-82c8-459461d7a033}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utils">
+    <Filter Include="Source Files\utils">
       <UniqueIdentifier>{4688f56b-735b-4051-ab55-e85d65fb1e94}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Utils">
+    <Filter Include="Source Files\packets">
+      <UniqueIdentifier>{b694fd43-dee0-4eda-a190-de6cfe9e3854}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
       <UniqueIdentifier>{e4775481-ef88-4cec-a9c8-dd8a5a9537e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\packets">
+      <UniqueIdentifier>{4f064416-188d-45ba-82c8-459461d7a033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\shaiya">
+      <UniqueIdentifier>{c030867e-5df4-478f-a3d7-5419717677e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\shaiya">
+      <UniqueIdentifier>{8e48e7f9-5c09-4be2-953d-4b7c799e9b2b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\dllmain.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utils\Memory.cpp">
-      <Filter>Source Files\Utils</Filter>
+    <ClCompile Include="src\Utils\memory.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Packets\character_list.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shaiya\CUser.cpp">
+      <Filter>Source Files\shaiya</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Utils\Memory.h">
-      <Filter>Header Files\Utils</Filter>
+    <ClInclude Include="include\Utils\memory.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Packets\character_list.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\CFriend.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\CItem.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\CMiniGame.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\CQuest.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\CSkill.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\CUser.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\SConnection.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\SkillInfo.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\SNode.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\SSyncList.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\SVector.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\packet.h">
+      <Filter>Header Files\packets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

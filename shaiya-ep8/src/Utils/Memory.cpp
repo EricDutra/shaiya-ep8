@@ -1,56 +1,56 @@
 #include "include/Utils/Memory.h"
 #include <cstring>
 
-namespace Utils
+namespace utils
 {
-	namespace Memory
+	namespace memory
 	{
-		bool Protect(void* address, size_t size, DWORD newProtect, DWORD* oldProtect)
+		bool protect(void* address, size_t size, DWORD new_protect, DWORD* old_protect)
 		{
-			return VirtualProtect(address, size, newProtect, oldProtect) != 0;
+			return VirtualProtect(address, size, new_protect, old_protect) != 0;
 		}
 
-		bool WriteBytes(void* address, const void* bytes, size_t size)
+		bool write_bytes(void* address, const void* bytes, size_t size)
 		{
-			DWORD oldProtect;
-			if (!Protect(address, size, PAGE_EXECUTE_READWRITE, &oldProtect))
+			DWORD old_protect;
+			if (!protect(address, size, PAGE_EXECUTE_READWRITE, &old_protect))
 				return false;
 
 			std::memcpy(address, bytes, size);
 
-			Protect(address, size, oldProtect, &oldProtect);
+			protect(address, size, old_protect, &old_protect);
 			return true;
 		}
 
-		bool Nop(void* address, size_t size)
+		bool nop(void* address, size_t size)
 		{
-			DWORD oldProtect;
-			if (!Protect(address, size, PAGE_EXECUTE_READWRITE, &oldProtect))
+			DWORD old_protect;
+			if (!protect(address, size, PAGE_EXECUTE_READWRITE, &old_protect))
 				return false;
 
 			std::memset(address, 0x90, size);
 
-			Protect(address, size, oldProtect, &oldProtect);
+			protect(address, size, old_protect, &old_protect);
 			return true;
 		}
 
-		bool Detour(void* src, void* dst, size_t size)
+		bool hook(void* src, void* dst, size_t size)
 		{
 			if (size < 5)
 				return false;
 
-			DWORD oldProtect;
-			if (!Protect(src, size, PAGE_EXECUTE_READWRITE, &oldProtect))
+			DWORD old_protect;
+			if (!protect(src, size, PAGE_EXECUTE_READWRITE, &old_protect))
 				return false;
 
 			std::memset(src, 0x90, size);
 
-			uintptr_t relativeAddress = (uintptr_t)dst - (uintptr_t)src - 5;
+			uintptr_t relative_address = (uintptr_t)dst - (uintptr_t)src - 5;
 
 			*(BYTE*)src = 0xE9;
-			*(uintptr_t*)((uintptr_t)src + 1) = relativeAddress;
+			*(uintptr_t*)((uintptr_t)src + 1) = relative_address;
 
-			Protect(src, size, oldProtect, &oldProtect);
+			protect(src, size, old_protect, &old_protect);
 			return true;
 		}
 	}

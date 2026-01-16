@@ -2,13 +2,13 @@
 #include <Windows.h>
 #include <cstdint>
 
-namespace Utils
+namespace utils
 {
-	namespace Memory
+	namespace memory
 	{
-		bool WriteBytes(void* address, const void* bytes, size_t size);
-		bool Nop(void* address, size_t size);
-		bool Detour(void* src, void* dst, size_t size);
-		bool Protect(void* address, size_t size, DWORD newProtect, DWORD* oldProtect);
+		bool write_bytes(void* address, const void* bytes, size_t size);
+		bool nop(void* address, size_t size);
+		bool hook(void* src, void* dst, size_t size);
+		bool protect(void* address, size_t size, DWORD new_protect, DWORD* old_protect);
 	}
 }

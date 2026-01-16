@@ -19,11 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\dllmain.cpp" />
-    <ClCompile Include="src\Utils\Memory.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Packets\character_list.cpp" />
+    <ClCompile Include="src\shaiya\CUser.cpp" />
+    <ClCompile Include="src\Utils\memory.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Utils\Memory.h" />
+    <ClInclude Include="include\Packets\character_list.h" />
+    <ClInclude Include="include\packets\packet.h" />
+    <ClInclude Include="include\shaiya\CFriend.h" />
+    <ClInclude Include="include\shaiya\CItem.h" />
+    <ClInclude Include="include\shaiya\CMiniGame.h" />
+    <ClInclude Include="include\shaiya\CQuest.h" />
+    <ClInclude Include="include\shaiya\CSkill.h" />
+    <ClInclude Include="include\shaiya\CUser.h" />
+    <ClInclude Include="include\shaiya\SConnection.h" />
+    <ClInclude Include="include\shaiya\SkillInfo.h" />
+    <ClInclude Include="include\shaiya\SNode.h" />
+    <ClInclude Include="include\shaiya\SSyncList.h" />
+    <ClInclude Include="include\shaiya\SVector.h" />
+    <ClInclude Include="include\Utils\memory.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -38,6 +53,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -77,14 +93,21 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;SHAIYAEP8_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>D:\Source Codes\shaiya-ep8\shaiya-ep8;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -100,8 +123,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;SHAIYAEP8_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>D:\Source Codes\shaiya-ep8\shaiya-ep8;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <UseFullPaths>true</UseFullPaths>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
