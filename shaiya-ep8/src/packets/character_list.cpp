@@ -1,5 +1,6 @@
 #include "include/packets/character_list.h"
 #include "include/utils/memory.h"
+#include "include/utils/buffer_reader.h"
 
 namespace packets
 {
