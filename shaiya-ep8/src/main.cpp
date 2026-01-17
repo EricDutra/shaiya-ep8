@@ -2,7 +2,7 @@
 #include <windows.h>
 #include "include/packets/character_list.h"
 
-void main()
+void init()
 {
     packets::character_list::hook();
 }
@@ -13,12 +13,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
     {
         case DLL_PROCESS_ATTACH:
             DisableThreadLibraryCalls(hModule);
-            main();
-            break;
-
-        case DLL_THREAD_ATTACH:
-        case DLL_THREAD_DETACH:
-        case DLL_PROCESS_DETACH:
+            init();
             break;
     }
 
