@@ -14,7 +14,7 @@ namespace packets
 
 		uintptr_t send_character_list_return = 0x0047B9B8;
 
-		__declspec(naked) void send_character_list_hook()
+		NAKED void send_character_list_hook()
 		{
 			__asm {
 				mov [esp + 0xCF], al

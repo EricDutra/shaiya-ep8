@@ -2,6 +2,8 @@
 #include <Windows.h>
 #include <cstdint>
 
+#define NAKED __declspec(naked)
+
 namespace utils
 {
 	namespace memory
