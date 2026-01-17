@@ -1,6 +1,6 @@
 #pragma once
-#include <Windows.h>
 #include <cstdint>
+#include "include/utils/win32_lean.h"
 #include "include/shaiya/SNode.h"
 
 namespace shaiya

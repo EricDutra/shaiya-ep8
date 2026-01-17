@@ -1,5 +1,5 @@
 #pragma once
-#include <Windows.h>
+#include "include/utils/win32_lean.h"
 #include "include/shaiya/SNode.h"
 
 #pragma pack(push, 1)

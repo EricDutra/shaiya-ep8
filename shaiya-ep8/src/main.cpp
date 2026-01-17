@@ -1,5 +1,4 @@
-#define WIN32_LEAN_AND_MEAN 
-#include <windows.h>
+#include "include/utils/win32_lean.h"
 #include "include/packets/character_list.h"
 
 void init()

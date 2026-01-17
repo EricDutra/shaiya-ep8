@@ -95,5 +95,8 @@
     <ClInclude Include="include\utils\buffer_reader.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="include\utils\win32_lean.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

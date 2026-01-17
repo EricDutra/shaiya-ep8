@@ -41,6 +41,7 @@
     <ClInclude Include="include\shaiya\SVector.h" />
     <ClInclude Include="include\utils\buffer_reader.h" />
     <ClInclude Include="include\Utils\memory.h" />
+    <ClInclude Include="include\utils\win32_lean.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
