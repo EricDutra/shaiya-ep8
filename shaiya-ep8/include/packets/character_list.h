@@ -14,72 +14,75 @@ namespace packets
 
         struct Character
         {
-            uint16_t opcode; // 0x0101
-            uint8_t  slot;
-            uint32_t charId;
-            uint32_t creationTime;
+			uint16_t opcode; // 0x0101
 
-            uint16_t level;
-            uint8_t  family;
-            uint8_t  mode;
-            uint8_t  hair;
-            uint8_t  face;
-            uint8_t  height;
-            uint8_t  job;
-            uint8_t  gender;
+			uint8_t  slot;
+			uint32_t char_id;
+			uint32_t creation_time;
 
-            uint16_t map;
+			uint16_t level;
+			uint8_t  family;
+			uint8_t  mode;
+			uint8_t  hair;
+			uint8_t  face;
+			uint8_t  height;
+			uint8_t  job;
+			uint8_t  gender;
 
-            uint16_t strength;
-            uint16_t dexterity;
-            uint16_t resistance;
-            uint16_t intelligence;
-            uint16_t wisdom;
-            uint16_t luck;
+			uint16_t map;
 
-            uint8_t  unk[6];
+			uint16_t strength;
+			uint16_t dexterity;
+			uint16_t resistance;
+			uint16_t intelligence;
+			uint16_t wisdom;
+			uint16_t luck;
 
-            uint8_t  helmetType;
-            uint8_t  armorType;
-            uint8_t  pantsType;
-            uint8_t  gloveType;
-            uint8_t  bootType;
-            uint8_t  weaponType;
-            uint8_t  shieldType;
-            uint8_t  capeType;
+			uint8_t  unk_1[6];
 
-            uint8_t  unk2[6];
+			// equipment types
+			uint8_t  helmet_type;
+			uint8_t  armor_type;
+			uint8_t  pants_type;
+			uint8_t  glove_type;
+			uint8_t  boot_type;
+			uint8_t  weapon_type;
+			uint8_t  shield_type;
+			uint8_t  cape_type;
 
-            uint8_t  petType;
-            uint8_t  costumeType;
-            uint8_t  wingType;
+			uint8_t  unk_2[6];
 
-            uint8_t  helmetTypeID;
-            uint8_t  armorTypeID;
-            uint8_t  pantsTypeID;
-            uint8_t  gloveTypeID;
-            uint8_t  bootTypeID;
-            uint8_t  weaponTypeID;
-            uint8_t  shieldTypeID;
-            uint8_t  capeTypeID;
+			uint8_t  pet_type;
+			uint8_t  costume_type;
+			uint8_t  wing_type;
 
-            uint8_t  unk3[6];
+			// equipment type IDs
+			uint8_t  helmet_type_id;
+			uint8_t  armor_type_id;
+			uint8_t  pants_type_id;
+			uint8_t  glove_type_id;
+			uint8_t  boot_type_id;
+			uint8_t  weapon_type_id;
+			uint8_t  shield_type_id;
+			uint8_t  cape_type_id;
 
-            uint8_t  petTypeID;
-            uint8_t  costumeTypeID;
-            uint8_t  wingTypeID;
+			uint8_t  unk_3[6];
 
-            uint8_t  unk4[540];
+			uint8_t  pet_type_id;
+			uint8_t  costume_type_id;
+			uint8_t  wing_type_id;
 
-            char     name[19];
+			uint8_t  unk_4[540];
 
-            uint8_t  deleteFlag;
-            uint8_t  renameFlag;
+			char     name[19];
+
+			uint8_t  delete_flag;
+			uint8_t  rename_flag;
         };
 
 #pragma pack(pop)
 
-        void send(CUser* user, Packet* old_packet);
+        void __fastcall send(CUser* user, void* old_packet);
         void hook();
 	}
 }

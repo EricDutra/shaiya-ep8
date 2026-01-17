@@ -370,6 +370,5 @@ namespace shaiya
 
         void Send(void* packet_ptr, size_t packet_size);
     };
-
 #pragma pack(pop)
 }

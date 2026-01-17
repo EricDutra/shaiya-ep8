@@ -2,19 +2,17 @@
 
 namespace shaiya
 {
+	using send_fn = void(__thiscall*)(CUser* this_ptr, void* packet, size_t size);
+
 	void CUser::Send(void* packet_ptr, size_t packet_size)
 	{
-		uintptr_t SConnectionSend = 0x004ED0E0;
+		static send_fn SConnectionSend = reinterpret_cast<send_fn>(0x004ED0E0);
 
-		__asm {
-			pushfd
-			pushad
-			push packet_size
-			push packet_ptr
-			mov ecx, this
-			call SConnectionSend
-			popad
-			popfd
-		}
+		SConnectionSend(this, packet_ptr, packet_size);
+	}
+
+	void expand_user_memory()
+	{
+
 	}
 }

@@ -1,5 +1,5 @@
-#include "include/utils/memory.h"
 #include <cstring>
+#include "include/utils/memory.h"
 
 namespace utils
 {

@@ -22,6 +22,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Packets\character_list.cpp" />
     <ClCompile Include="src\shaiya\CUser.cpp" />
+    <ClCompile Include="src\utils\buffer_reader.cpp" />
     <ClCompile Include="src\Utils\memory.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +39,7 @@
     <ClInclude Include="include\shaiya\SNode.h" />
     <ClInclude Include="include\shaiya\SSyncList.h" />
     <ClInclude Include="include\shaiya\SVector.h" />
+    <ClInclude Include="include\utils\buffer_reader.h" />
     <ClInclude Include="include\Utils\memory.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
