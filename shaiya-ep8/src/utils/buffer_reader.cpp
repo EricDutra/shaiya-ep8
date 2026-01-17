@@ -23,5 +23,10 @@ namespace utils
 		{
 			return data[offset];
 		}
+
+		void ReadBytes(const uint8_t* data, size_t offset, void* out, size_t size)
+		{
+			std::memcpy(out, data + offset, size);
+		}
 	}
 }
