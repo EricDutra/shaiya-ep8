@@ -10,9 +10,4 @@ namespace shaiya
 
 		SConnectionSend(this, packet_ptr, packet_size);
 	}
-
-	void expand_user_memory()
-	{
-
-	}
 }
