@@ -1,8 +1,10 @@
 #include "include/utils/win32_lean.h"
+#include "include/packets/handler.h"
 #include "include/packets/character_list.h"
 
 void init()
 {
+    packets::handler::hook();
     packets::character_list::hook();
 }
 

@@ -48,6 +48,9 @@
     <ClCompile Include="src\utils\buffer_reader.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\packets\handler.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utils\memory.h">
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="include\utils\win32_lean.h">
       <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\handler.h">
+      <Filter>Header Files\packets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
