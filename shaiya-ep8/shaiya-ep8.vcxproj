@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Packets\character_list.cpp" />
+    <ClCompile Include="src\packets\handler.cpp" />
     <ClCompile Include="src\shaiya\CUser.cpp" />
     <ClCompile Include="src\utils\buffer_reader.cpp" />
     <ClCompile Include="src\Utils\memory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Packets\character_list.h" />
+    <ClInclude Include="include\packets\handler.h" />
     <ClInclude Include="include\packets\packet.h" />
     <ClInclude Include="include\shaiya\CFriend.h" />
     <ClInclude Include="include\shaiya\CItem.h" />
