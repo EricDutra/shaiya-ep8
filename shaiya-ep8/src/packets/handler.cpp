@@ -1,4 +1,5 @@
 #include "include/packets/handler.h"
+#include "include/packets/charname_check.h"
 #include "include/utils/memory.h"
 
 namespace packets
@@ -10,6 +11,10 @@ namespace packets
 			switch (packet->opcode)
 			{
 				case PacketType::AutoStatsList:
+					return true;
+
+				case PacketType::CheckCharnameAvailable:
+					packets::charname_check::check(user, packet);
 					return true;
 			}
 
