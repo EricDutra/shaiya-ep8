@@ -14,7 +14,7 @@ namespace packets
 
         struct Character
         {
-			uint16_t opcode; // 0x0101
+			PacketType opcode;
 
 			uint8_t  slot;
 			uint32_t char_id;
