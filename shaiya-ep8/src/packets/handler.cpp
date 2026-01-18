@@ -16,6 +16,12 @@ namespace packets
 				case PacketType::CheckCharnameAvailable:
 					packets::charname_check::check(user, packet);
 					return true;
+
+				case PacketType::Ping:
+					return true;
+
+				case (PacketType)0x0234: // unknown
+					return true;
 			}
 
 			return false;

@@ -7,7 +7,8 @@ namespace packets
     {
 		CharacterList = 0x0101,
 		CheckCharnameAvailable = 0x0119,
-        AutoStatsList = 0x0120
+        AutoStatsList = 0x0120,
+		Ping = 0xA303
     };
 
 	struct Packet
