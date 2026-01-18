@@ -5,6 +5,7 @@ namespace packets
 {
     enum struct PacketType : uint16_t
     {
+		CheckCharnameAvailable = 0x0119,
         AutoStatsList = 0x0120
     };
 
