@@ -4,6 +4,7 @@
 #include "include/shaiya/SSyncList.h"
 #include "include/shaiya/SConnection.h"
 #include "include/shaiya/CItem.h"
+#include "include/shaiya/CGuild.h"
 #include "include/shaiya/CSkill.h"
 #include "include/shaiya/CQuest.h"
 #include "include/shaiya/CMiniGame.h"
@@ -286,7 +287,7 @@ namespace shaiya
         uint32_t guildRank;
         uint8_t  unk16[8];
 
-        uint32_t guild;
+        CGuild* guild;
 
         uint32_t guildCreate;                  // 0x1814
         CMiniGame miniGame;                    // 0x1818

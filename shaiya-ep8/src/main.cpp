@@ -1,11 +1,13 @@
 #include "include/utils/win32_lean.h"
 #include "include/packets/handler.h"
 #include "include/packets/character_list.h"
+#include "include/packets/character_details.h"
 
 void init()
 {
     packets::handler::hook();
     packets::character_list::hook();
+    packets::character_details::hook();
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)

@@ -51,6 +51,12 @@
     <ClCompile Include="src\packets\handler.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
+    <ClCompile Include="src\packets\charname_check.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\packets\character_details.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utils\memory.h">
@@ -103,6 +109,15 @@
     </ClInclude>
     <ClInclude Include="include\packets\handler.h">
       <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\charname_check.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\character_details.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\CGuild.h">
+      <Filter>Header Files\shaiya</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -24,7 +24,7 @@ namespace shaiya
         uint32_t length;        // 0x08
         CRITICAL_SECTION cs;    // 0x0C
         uint32_t count;         // 0x24
-        uint8_t unk[4];         // 0x28
+        // 0x28
     };
 
     struct SSyncQueueBuffer
@@ -33,7 +33,7 @@ namespace shaiya
         void* tail;             // 0x04
         CRITICAL_SECTION cs;    // 0x08
         uint32_t count;         // 0x20
-        uint8_t unk[4];         // 0x24
+        // 0x24
     };
 
     struct SConnectionParam
@@ -50,7 +50,7 @@ namespace shaiya
         uint32_t sendProcessing;// 0x3C
         uint8_t unk2[8];        // 0x40
         CRITICAL_SECTION cs;    // 0x48
-        uint8_t unk3[8];        // 0x60
+        // 0x60
     };
 
     struct SConnection
