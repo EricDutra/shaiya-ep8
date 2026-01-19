@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\packets\character_details.cpp" />
     <ClCompile Include="src\Packets\character_list.cpp" />
     <ClCompile Include="src\packets\charname_check.cpp" />
     <ClCompile Include="src\packets\handler.cpp" />
@@ -28,11 +29,13 @@
     <ClCompile Include="src\Utils\memory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\packets\character_details.h" />
     <ClInclude Include="include\Packets\character_list.h" />
     <ClInclude Include="include\packets\charname_check.h" />
     <ClInclude Include="include\packets\handler.h" />
     <ClInclude Include="include\packets\packet.h" />
     <ClInclude Include="include\shaiya\CFriend.h" />
+    <ClInclude Include="include\shaiya\CGuild.h" />
     <ClInclude Include="include\shaiya\CItem.h" />
     <ClInclude Include="include\shaiya\CMiniGame.h" />
     <ClInclude Include="include\shaiya\CQuest.h" />
