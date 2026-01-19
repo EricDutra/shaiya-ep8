@@ -9,7 +9,7 @@ namespace shaiya
     struct CSkill
     {
         SNode node;             // 0x00
-        uint64_t id;            // 0x08
+        uint32_t id;            // 0x08
         uint32_t skillId;       // 0x0C
         uint32_t skillLv;       // 0x10
         uint32_t skillListIndex; // 0x14
@@ -21,9 +21,8 @@ namespace shaiya
         uint32_t tick4;         // 0x28
         uint32_t tick5;         // 0x2C
 
-        uint64_t debuffCasterId; // 0x30
+        uint32_t debuffCasterId; // 0x30
         SkillInfo* skillInfo;   // 0x34
-        uint8_t _[4];           // 0x38
     };
 #pragma pack(pop)
 }

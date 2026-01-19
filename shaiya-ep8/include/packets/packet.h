@@ -9,6 +9,7 @@ namespace packets
 		CharacterDetails = 0x0105,
 		CheckCharnameAvailable = 0x0119,
         AutoStatsList = 0x0120,
+		CharacterStatus = 0x0526,
 		Ping = 0xA303
     };
 

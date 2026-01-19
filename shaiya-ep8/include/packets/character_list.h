@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
-#include "include/shaiya/CUser.h"
 #include "include/packets/packet.h"
+#include "include/shaiya/CUser.h"
 
 using namespace shaiya;
 
@@ -9,9 +9,7 @@ namespace packets
 {
 	namespace character_list
 	{
-
 #pragma pack(push, 1)
-
         struct Character
         {
 			PacketType opcode;
@@ -79,7 +77,6 @@ namespace packets
 			uint8_t  delete_flag;
 			uint8_t  rename_flag;
         };
-
 #pragma pack(pop)
 
         void __fastcall send(CUser* user, void* old_packet);
