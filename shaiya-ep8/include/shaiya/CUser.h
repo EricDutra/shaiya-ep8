@@ -20,7 +20,7 @@ namespace shaiya
         uint8_t bag;
         uint8_t slot;
         uint8_t srcBag;
-        char _;
+        uint8_t _;
         uint16_t srcSlot;
     };
 
@@ -210,7 +210,7 @@ namespace shaiya
         uint32_t abilityMagicEvasionRate;      // 0x13AC
         uint32_t abilityAddMagicResistance;    // 0x13B0
 
-        bool     attackBlinded;                // 0x13B4
+        uint32_t attackBlinded;                // 0x13B4
         uint32_t evasionStatus;                // 0x13B8
         uint32_t evasionPercentage;            // 0x13BC
         uint32_t mirrorSkillId;                // 0x13C0
@@ -223,7 +223,7 @@ namespace shaiya
 
         uint8_t  unk5[4];                         // 0x13DC
 
-        bool     rangedAttackBlinded;          // 0x13E0
+        uint32_t rangedAttackBlinded;          // 0x13E0
         uint32_t rangedEvasionStatus;          // 0x13E4
         uint32_t rangedEvasionPercentage;      // 0x13E8
         uint32_t rangedMirrorSkillId;          // 0x13EC
@@ -236,7 +236,7 @@ namespace shaiya
 
         uint8_t  unk6[4];                         // 0x1408
 
-        bool     silenced;                     // 0x140C
+        uint32_t silenced;                     // 0x140C
         uint32_t magicEvasionStatus;           // 0x1410
         uint32_t magicEvasionCounter;          // 0x1414
         uint32_t magicMirrorSkillId;           // 0x1418
@@ -254,8 +254,8 @@ namespace shaiya
         uint8_t  movementStatus;
         uint8_t  unk9[2];
 
-        bool     running;                      // 0x1450
-        bool     attacking;                    // 0x1454
+        uint32_t running;                      // 0x1450
+        uint32_t attacking;                    // 0x1454
         UserAttackType attackType;             // 0x1458
         uint32_t prevSkillUseIndex;            // 0x145C
 
@@ -265,7 +265,7 @@ namespace shaiya
         uint32_t attackTypeSkillTick;          // 0x1468
         uint32_t attackTypeBasicTick;          // 0x146C
         uint32_t rebirthExpireTick;            // 0x1470
-        bool     leaderResurrect;               // 0x1474
+        uint32_t leaderResurrect;               // 0x1474
         uint32_t expLossRate;                  // 0x1478
 
         uint32_t mountStatus;
@@ -301,9 +301,9 @@ namespace shaiya
         uint32_t buddyRequestSenderId;          // 0x5530
         uint8_t  unk17[76];
 
-        bool     joinGuildDisabled;             // 0x5580
-        bool     grbZoneEnterFlag;              // 0x5584
-        bool     insZoneEnterFlag;              // 0x5588
+        uint32_t joinGuildDisabled;             // 0x5580
+        uint32_t grbZoneEnterFlag;              // 0x5584
+        uint32_t insZoneEnterFlag;              // 0x5588
         UserPvPStatus pvpStatus;                // 0x558C
 
         uint32_t pvpRequestExpireTick;          // 0x5590

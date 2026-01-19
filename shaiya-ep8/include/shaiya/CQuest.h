@@ -8,7 +8,7 @@ namespace shaiya
     struct CQuest
     {
         SNode node;           // 0x00
-        uint64_t id;          // 0x08
+        uint32_t id;          // 0x08
         bool success;         // 0x0C
         uint8_t _0[3];        // 0x0D
         uint32_t addTick;     // 0x10
@@ -19,7 +19,6 @@ namespace shaiya
         uint8_t count3;       // 0x1E
         uint8_t _1;           // 0x1F
         uint32_t questInfo;   // 0x20 QuestInfo*
-        uint8_t _2[4];        // 0x24
     };
 #pragma pack(pop)
 }
