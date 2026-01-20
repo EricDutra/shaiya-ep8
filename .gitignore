@@ -7,7 +7,6 @@
 *.userosscache
 *.sln.docstates
 
-# Build outputs
 Debug/
 Release/
 x64/
@@ -31,11 +30,9 @@ build/
 *.exp
 *.lib
 
-# DLL / EXE
 *.exe
 *.dll
 
-# Intermediate files
 ipch/
 *.cache
 *.tmp
@@ -43,14 +40,12 @@ ipch/
 *.aps
 *.ncb
 
-# Visual Studio C++
 *.VC.db
 *.VC.opendb
 *.sdf
 *.opensdf
 *.db
 
-# CMake / Ninja
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
@@ -59,9 +54,8 @@ Makefile
 .ninja_log
 .ninja_deps
 
-# Logs
 *.log
+Log/
 
-# OS
 Thumbs.db
 .DS_Store

@@ -1,6 +1,8 @@
 #include "include/packets/character/list.h"
 #include "include/utils/memory.h"
 #include "include/utils/buffer_reader.h"
+#include "include/utils/logger.h"
+#include "include/database/connection.h"
 
 namespace packets::character::list
 {
@@ -51,6 +53,23 @@ namespace packets::character::list
 		character.weapon_type_id = utils::buffer_reader::read_u8(data, 56);
 		character.shield_type_id = utils::buffer_reader::read_u8(data, 57);
 		character.cape_type_id = utils::buffer_reader::read_u8(data, 58);
+
+		database::Connection conn;
+		if (conn.connect("PS_GameData"))
+		{
+			char query[256];
+			snprintf(query, sizeof(query), "EXEC dbo.usp_Read_Char_Items_Skin_R %u", character.char_id);
+
+			if (conn.execute(query) && conn.fetch())
+			{
+				conn.get_byte(1, &character.pet_type);
+				conn.get_byte(2, &character.pet_type_id);
+				conn.get_byte(3, &character.costume_type);
+				conn.get_byte(4, &character.costume_type_id);
+				conn.get_byte(5, &character.wing_type);
+				conn.get_byte(6, &character.wing_type_id);
+			}
+		}
 
 		utils::buffer_reader::read_bytes(data, 65, character.name, 19);
 

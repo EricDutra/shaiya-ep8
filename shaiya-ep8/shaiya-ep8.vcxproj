@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\database\config.cpp" />
+    <ClCompile Include="src\database\connection.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\packets\character\charname_check.cpp" />
     <ClCompile Include="src\packets\character\details.cpp" />
@@ -27,9 +29,13 @@
     <ClCompile Include="src\packets\handler.cpp" />
     <ClCompile Include="src\shaiya\CUser.cpp" />
     <ClCompile Include="src\utils\buffer_reader.cpp" />
+    <ClCompile Include="src\utils\ini_reader.cpp" />
+    <ClCompile Include="src\utils\logger.cpp" />
     <ClCompile Include="src\Utils\memory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\database\config.h" />
+    <ClInclude Include="include\database\connection.h" />
     <ClInclude Include="include\packets\character\charname_check.h" />
     <ClInclude Include="include\packets\character\details.h" />
     <ClInclude Include="include\packets\character\list.h" />
@@ -49,6 +55,8 @@
     <ClInclude Include="include\shaiya\SSyncList.h" />
     <ClInclude Include="include\shaiya\SVector.h" />
     <ClInclude Include="include\utils\buffer_reader.h" />
+    <ClInclude Include="include\utils\ini_reader.h" />
+    <ClInclude Include="include\utils\logger.h" />
     <ClInclude Include="include\Utils\memory.h" />
     <ClInclude Include="include\utils\win32_lean.h" />
   </ItemGroup>
@@ -125,6 +133,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -146,6 +155,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -162,6 +172,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -179,6 +190,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
