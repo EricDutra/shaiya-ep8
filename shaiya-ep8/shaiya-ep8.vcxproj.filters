@@ -37,6 +37,9 @@
     <Filter Include="Source Files\packets\character">
       <UniqueIdentifier>{00445cd0-901c-4ff4-9472-c1a0d7002f40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{5aeb1c29-6e10-4771-afe5-5f0fd545dc14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="include\packets\character\status.h">
       <Filter>Header Files\packets\character</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database\connection.h">
+      <Filter>Header Files\database</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
