@@ -18,6 +18,10 @@ namespace database
 
 		bool connect(const char* database);
 		bool execute(const char* query);
+		bool prepare(const char* query);
+		bool bind_string(uint16_t param_number, const char* value, size_t length);
+		bool bind_int(uint16_t param_number, const int32_t* value);
+		bool execute_prepared();
 		bool fetch();
 		bool get_string(uint16_t column, char* buffer, size_t buffer_size);
 		bool get_int(uint16_t column, int32_t* value);

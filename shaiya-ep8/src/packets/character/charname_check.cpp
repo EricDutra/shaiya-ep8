@@ -5,7 +5,7 @@
 
 namespace packets::character::charname_check
 {
-	static bool is_valid_character_name(const char* name)
+	static bool is_valid_charname(const char* name)
 	{
 		if (!name) return false;
 
@@ -33,7 +33,7 @@ namespace packets::character::charname_check
 
 		response.available = true;
 
-		if (!is_valid_character_name(charname.c_str()))
+		if (!is_valid_charname(charname.c_str()))
 		{
 			utils::logger::warning("Character name validation failed: '%s'", charname.c_str());
 			response.available = false;
@@ -44,12 +44,14 @@ namespace packets::character::charname_check
 		database::Connection conn;
 		if (conn.connect("PS_GameData"))
 		{
-			char query[256];
-			snprintf(query, sizeof(query), "SELECT CharID FROM PS_GameData.dbo.Chars WHERE CharName = '%s';", charname.c_str());
-
-			if (conn.execute(query) && conn.fetch())
+			if (conn.prepare("SELECT CharID FROM PS_GameData.dbo.Chars WHERE CharName = ?;"))
 			{
-				response.available = false;
+				conn.bind_string(1, charname.c_str(), charname.length());
+
+				if (conn.execute_prepared() && conn.fetch())
+				{
+					response.available = false;
+				}
 			}
 		}
 

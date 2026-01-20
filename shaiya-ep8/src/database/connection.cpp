@@ -118,6 +118,98 @@ namespace database
 		return true;
 	}
 
+	bool Connection::prepare(const char* query)
+	{
+		if (!connected || !stmt)
+		{
+			utils::logger::error("Prepare failed: not connected or invalid statement handle");
+			return false;
+		}
+
+		SQLFreeStmt(stmt, SQL_CLOSE);
+		SQLFreeStmt(stmt, SQL_RESET_PARAMS);
+
+		SQLRETURN ret = SQLPrepareA(stmt, (SQLCHAR*)query, SQL_NTS);
+
+		if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO)
+		{
+			char error[512];
+			get_sql_error(stmt, SQL_HANDLE_STMT, error, sizeof(error));
+			utils::logger::error("Query prepare failed: %s", error);
+			utils::logger::error("Query was: %s", query);
+			return false;
+		}
+
+		return true;
+	}
+
+	bool Connection::bind_string(uint16_t param_number, const char* value, size_t length)
+	{
+		if (!connected || !stmt || !value)
+		{
+			utils::logger::error("Bind string failed: invalid parameters");
+			return false;
+		}
+
+		SQLLEN str_len = (length > 0) ? length : SQL_NTS;
+		SQLRETURN ret = SQLBindParameter(stmt, param_number, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_VARCHAR,
+			length, 0, (SQLPOINTER)value, 0, &str_len);
+
+		if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO)
+		{
+			char error[512];
+			get_sql_error(stmt, SQL_HANDLE_STMT, error, sizeof(error));
+			utils::logger::error("String parameter binding failed: %s", error);
+			return false;
+		}
+
+		return true;
+	}
+
+	bool Connection::bind_int(uint16_t param_number, const int32_t* value)
+	{
+		if (!connected || !stmt || !value)
+		{
+			utils::logger::error("Bind int failed: not connected or invalid statement handle");
+			return false;
+		}
+
+		SQLLEN indicator = 0;
+		SQLRETURN ret = SQLBindParameter(stmt, param_number, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER,
+			0, 0, (SQLPOINTER)value, 0, &indicator);
+
+		if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO)
+		{
+			char error[512];
+			get_sql_error(stmt, SQL_HANDLE_STMT, error, sizeof(error));
+			utils::logger::error("Integer parameter binding failed: %s", error);
+			return false;
+		}
+
+		return true;
+	}
+
+	bool Connection::execute_prepared()
+	{
+		if (!connected || !stmt)
+		{
+			utils::logger::error("Execute prepared failed: not connected or invalid statement handle");
+			return false;
+		}
+
+		SQLRETURN ret = SQLExecute(stmt);
+
+		if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO)
+		{
+			char error[512];
+			get_sql_error(stmt, SQL_HANDLE_STMT, error, sizeof(error));
+			utils::logger::error("Prepared query execution failed: %s", error);
+			return false;
+		}
+
+		return true;
+	}
+
 	bool Connection::fetch()
 	{
 		if (!connected || !stmt)
