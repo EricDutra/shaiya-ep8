@@ -4,11 +4,8 @@
 
 using namespace shaiya;
 
-namespace packets
+namespace packets::handler
 {
-	namespace handler
-	{
-		bool __fastcall process(CUser* user, Packet* packet);
-		void hook();
-	}
+	bool __fastcall process(CUser* user, Packet* packet);
+	void hook();
 }

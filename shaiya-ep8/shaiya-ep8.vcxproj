@@ -20,20 +20,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\packets\character_details.cpp" />
-    <ClCompile Include="src\Packets\character_list.cpp" />
-    <ClCompile Include="src\packets\character_status.cpp" />
-    <ClCompile Include="src\packets\charname_check.cpp" />
+    <ClCompile Include="src\packets\character\charname_check.cpp" />
+    <ClCompile Include="src\packets\character\details.cpp" />
+    <ClCompile Include="src\packets\character\list.cpp" />
+    <ClCompile Include="src\packets\character\status.cpp" />
     <ClCompile Include="src\packets\handler.cpp" />
     <ClCompile Include="src\shaiya\CUser.cpp" />
     <ClCompile Include="src\utils\buffer_reader.cpp" />
     <ClCompile Include="src\Utils\memory.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\packets\character_details.h" />
-    <ClInclude Include="include\Packets\character_list.h" />
-    <ClInclude Include="include\packets\character_status.h" />
-    <ClInclude Include="include\packets\charname_check.h" />
+    <ClInclude Include="include\packets\character\charname_check.h" />
+    <ClInclude Include="include\packets\character\details.h" />
+    <ClInclude Include="include\packets\character\list.h" />
+    <ClInclude Include="include\packets\character\status.h" />
     <ClInclude Include="include\packets\handler.h" />
     <ClInclude Include="include\packets\packet.h" />
     <ClInclude Include="include\shaiya\CFriend.h" />
@@ -140,6 +140,7 @@
       <AdditionalIncludeDirectories>D:\Source Codes\shaiya-ep8\shaiya-ep8;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <UseFullPaths>true</UseFullPaths>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

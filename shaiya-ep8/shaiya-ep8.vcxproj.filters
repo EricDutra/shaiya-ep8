@@ -31,6 +31,12 @@
     <Filter Include="Source Files\shaiya">
       <UniqueIdentifier>{8e48e7f9-5c09-4be2-953d-4b7c799e9b2b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\packets\character">
+      <UniqueIdentifier>{a031137d-d6d9-416e-8075-07bc280143b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\packets\character">
+      <UniqueIdentifier>{00445cd0-901c-4ff4-9472-c1a0d7002f40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -38,9 +44,6 @@
     </ClCompile>
     <ClCompile Include="src\Utils\memory.cpp">
       <Filter>Source Files\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Packets\character_list.cpp">
-      <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="src\shaiya\CUser.cpp">
       <Filter>Source Files\shaiya</Filter>
@@ -51,19 +54,22 @@
     <ClCompile Include="src\packets\handler.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="src\packets\charname_check.cpp">
-      <Filter>Source Files\packets</Filter>
+    <ClCompile Include="src\packets\character\charname_check.cpp">
+      <Filter>Source Files\packets\character</Filter>
     </ClCompile>
-    <ClCompile Include="src\packets\character_details.cpp">
-      <Filter>Source Files\packets</Filter>
+    <ClCompile Include="src\packets\character\details.cpp">
+      <Filter>Source Files\packets\character</Filter>
+    </ClCompile>
+    <ClCompile Include="src\packets\character\list.cpp">
+      <Filter>Source Files\packets\character</Filter>
+    </ClCompile>
+    <ClCompile Include="src\packets\character\status.cpp">
+      <Filter>Source Files\packets\character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utils\memory.h">
       <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Packets\character_list.h">
-      <Filter>Header Files\packets</Filter>
     </ClInclude>
     <ClInclude Include="include\shaiya\CFriend.h">
       <Filter>Header Files\shaiya</Filter>
@@ -107,17 +113,23 @@
     <ClInclude Include="include\utils\win32_lean.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="include\shaiya\CGuild.h">
+      <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
     <ClInclude Include="include\packets\handler.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="include\packets\charname_check.h">
-      <Filter>Header Files\packets</Filter>
+    <ClInclude Include="include\packets\character\charname_check.h">
+      <Filter>Header Files\packets\character</Filter>
     </ClInclude>
-    <ClInclude Include="include\packets\character_details.h">
-      <Filter>Header Files\packets</Filter>
+    <ClInclude Include="include\packets\character\details.h">
+      <Filter>Header Files\packets\character</Filter>
     </ClInclude>
-    <ClInclude Include="include\shaiya\CGuild.h">
-      <Filter>Header Files\shaiya</Filter>
+    <ClInclude Include="include\packets\character\list.h">
+      <Filter>Header Files\packets\character</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\character\status.h">
+      <Filter>Header Files\packets\character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

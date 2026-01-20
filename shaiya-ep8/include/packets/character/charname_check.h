@@ -5,21 +5,15 @@
 
 using namespace shaiya;
 
-namespace packets
+namespace packets::character::charname_check
 {
-	namespace charname_check
-	{
-
 #pragma pack(push, 1)
-
-		struct Response
-		{
-			PacketType opcode;
-			bool available;
-		};
-
+	struct Response
+	{
+		PacketType opcode;
+		bool available;
+	};
 #pragma pack(pop)
 
-		void check(CUser* user, Packet* packet);
-	}
+	void check(CUser* user, Packet* packet);
 }
