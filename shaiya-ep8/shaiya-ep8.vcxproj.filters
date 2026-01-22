@@ -43,6 +43,12 @@
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{00ab0586-55e7-4180-af4f-443538b49442}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\game">
+      <UniqueIdentifier>{9b9e9626-8b18-48ff-9b2d-06f183f53f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game">
+      <UniqueIdentifier>{7b5e295b-b028-422a-8a84-e3e14dfbaea6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -83,6 +89,15 @@
     </ClCompile>
     <ClCompile Include="src\utils\ini_reader.cpp">
       <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\expand_inventory_slots.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\expand_item_quality_memory.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\expand_user_memory.cpp">
+      <Filter>Source Files\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +175,15 @@
     </ClInclude>
     <ClInclude Include="include\utils\logger.h">
       <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\expand_inventory_slots.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\expand_item_quality_memory.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\expand_user_memory.h">
+      <Filter>Header Files\game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

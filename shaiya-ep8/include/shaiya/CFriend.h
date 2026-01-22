@@ -9,7 +9,6 @@ namespace shaiya
         uint32_t charId;        // 0x00
         char charname[21];      // 0x04
         char memo[51];          // 0x19
-        uint8_t _[4];           // 0x4C
     };
 
     struct CFriend

@@ -5,6 +5,9 @@
 #include "include/packets/character/list.h"
 #include "include/packets/character/details.h"
 #include "include/packets/character/status.h"
+#include "include/game/expand_inventory_slots.h"
+#include "include/game/expand_item_quality_memory.h"
+#include "include/game/expand_user_memory.h"
 
 void init()
 {
@@ -16,6 +19,9 @@ void init()
     packets::character::list::hook();
     packets::character::details::hook();
     packets::character::status::hook();
+	game::expand_inventory_slots::apply();
+	game::expand_item_quality_memory::apply();
+	game::expand_user_memory::apply();
 
     utils::logger::info("Shaiya EP8 (https://github.com/EricDutra/shaiya-ep8) DLL initialized");
 }

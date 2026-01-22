@@ -21,6 +21,9 @@
   <ItemGroup>
     <ClCompile Include="src\database\config.cpp" />
     <ClCompile Include="src\database\connection.cpp" />
+    <ClCompile Include="src\game\expand_inventory_slots.cpp" />
+    <ClCompile Include="src\game\expand_item_quality_memory.cpp" />
+    <ClCompile Include="src\game\expand_user_memory.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\packets\character\charname_check.cpp" />
     <ClCompile Include="src\packets\character\details.cpp" />
@@ -36,6 +39,9 @@
   <ItemGroup>
     <ClInclude Include="include\database\config.h" />
     <ClInclude Include="include\database\connection.h" />
+    <ClInclude Include="include\game\expand_inventory_slots.h" />
+    <ClInclude Include="include\game\expand_item_quality_memory.h" />
+    <ClInclude Include="include\game\expand_user_memory.h" />
     <ClInclude Include="include\packets\character\charname_check.h" />
     <ClInclude Include="include\packets\character\details.h" />
     <ClInclude Include="include\packets\character\list.h" />
