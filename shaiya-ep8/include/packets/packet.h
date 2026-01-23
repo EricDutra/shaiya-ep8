@@ -7,6 +7,7 @@ namespace packets
     {
 		CharacterList = 0x0101,
 		CharacterDetails = 0x0105,
+		CharacterItem = 0x0106,
 		CheckCharnameAvailable = 0x0119,
         AutoStatsList = 0x0120,
 		CharacterStatus = 0x0526,

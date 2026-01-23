@@ -369,6 +369,7 @@ namespace shaiya
 
         uint8_t  unk27[2620];
 
+        void SendItem(CItem* item, uint8_t bag, uint8_t slot);
         void Send(void* packet_ptr, size_t packet_size);
     };
 #pragma pack(pop)

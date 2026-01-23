@@ -30,6 +30,7 @@
     <ClCompile Include="src\packets\character\list.cpp" />
     <ClCompile Include="src\packets\character\status.cpp" />
     <ClCompile Include="src\packets\handler.cpp" />
+    <ClCompile Include="src\packets\items\inventory.cpp" />
     <ClCompile Include="src\shaiya\CUser.cpp" />
     <ClCompile Include="src\utils\buffer_reader.cpp" />
     <ClCompile Include="src\utils\ini_reader.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="include\packets\character\list.h" />
     <ClInclude Include="include\packets\character\status.h" />
     <ClInclude Include="include\packets\handler.h" />
+    <ClInclude Include="include\packets\items\inventory.h" />
     <ClInclude Include="include\packets\packet.h" />
     <ClInclude Include="include\shaiya\CFriend.h" />
     <ClInclude Include="include\shaiya\CGuild.h" />

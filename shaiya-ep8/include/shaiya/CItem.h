@@ -1,5 +1,8 @@
 #pragma once
 #include <array>
+#include "include/packets/packet.h"
+
+using namespace packets;
 
 namespace shaiya
 {
@@ -9,6 +12,23 @@ namespace shaiya
         uint8_t type;
         uint8_t typeId;
         uint8_t count;
+    };
+
+    struct CharacterItem
+    {
+        PacketType opcode;
+        uint8_t item_count;
+        uint8_t bag;
+        uint8_t slot;
+        uint8_t type;
+        uint8_t type_id;
+        uint16_t quality;
+        uint32_t gem[6];
+        uint8_t count = 0;
+        char craftname[20];
+        uint8_t unk[23];
+        uint8_t is_dyed = 0;
+        uint8_t unk2[27];
     };
 
     enum struct ItemEffect : uint8_t

@@ -49,6 +49,12 @@
     <Filter Include="Header Files\game">
       <UniqueIdentifier>{7b5e295b-b028-422a-8a84-e3e14dfbaea6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\packets\items">
+      <UniqueIdentifier>{b93ea3d0-fbed-4f53-966f-c9d333431f31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\packets\items">
+      <UniqueIdentifier>{503124a4-b4de-4ada-8e93-d3beb94777eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -98,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="src\game\expand_user_memory.cpp">
       <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\packets\items\inventory.cpp">
+      <Filter>Source Files\packets\items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="include\game\expand_user_memory.h">
       <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\items\inventory.h">
+      <Filter>Header Files\packets\items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
