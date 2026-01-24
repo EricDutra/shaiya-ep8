@@ -1,5 +1,6 @@
 #include "include/packets/handler.h"
 #include "include/packets/character/charname_check.h"
+#include "include/packets/items/inventory.h"
 #include "include/utils/memory.h"
 
 namespace packets::handler
@@ -13,6 +14,10 @@ namespace packets::handler
 
 			case PacketType::CheckCharnameAvailable:
 				packets::character::charname_check::check(user, packet);
+				return true;
+
+			case PacketType::SortInventoryItems:
+				packets::items::inventory::sort_items(user);
 				return true;
 
 			case PacketType::Ping:

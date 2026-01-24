@@ -108,6 +108,21 @@
     <ClCompile Include="src\packets\items\inventory.cpp">
       <Filter>Source Files\packets\items</Filter>
     </ClCompile>
+    <ClCompile Include="src\packets\items\blacksmith.cpp">
+      <Filter>Source Files\packets\items</Filter>
+    </ClCompile>
+    <ClCompile Include="src\packets\items\guild_warehouse.cpp">
+      <Filter>Source Files\packets\items</Filter>
+    </ClCompile>
+    <ClCompile Include="src\packets\items\player_market.cpp">
+      <Filter>Source Files\packets\items</Filter>
+    </ClCompile>
+    <ClCompile Include="src\packets\items\trade.cpp">
+      <Filter>Source Files\packets\items</Filter>
+    </ClCompile>
+    <ClCompile Include="src\packets\items\warehouse.cpp">
+      <Filter>Source Files\packets\items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utils\memory.h">
@@ -195,6 +210,21 @@
       <Filter>Header Files\game</Filter>
     </ClInclude>
     <ClInclude Include="include\packets\items\inventory.h">
+      <Filter>Header Files\packets\items</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\items\blacksmith.h">
+      <Filter>Header Files\packets\items</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\items\guild_warehouse.h">
+      <Filter>Header Files\packets\items</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\items\player_market.h">
+      <Filter>Header Files\packets\items</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\items\trade.h">
+      <Filter>Header Files\packets\items</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\items\warehouse.h">
       <Filter>Header Files\packets\items</Filter>
     </ClInclude>
   </ItemGroup>
