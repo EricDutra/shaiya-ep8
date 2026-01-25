@@ -3,6 +3,8 @@
 #include "include/utils/win32_lean.h"
 #include "include/shaiya/SNode.h"
 
+constexpr uintptr_t SConnectionSend = 0x004ED0E0;
+
 namespace shaiya
 {
 #pragma pack(push, 1)

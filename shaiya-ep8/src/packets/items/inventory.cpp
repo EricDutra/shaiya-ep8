@@ -1,7 +1,7 @@
+#include <cstring>
 #include "include/packets/items/inventory.h"
 #include "include/utils/memory.h"
 #include "include/utils/buffer_reader.h"
-#include <cstring>
 
 using namespace utils::buffer_reader;
 
@@ -293,6 +293,7 @@ namespace packets::items::inventory
 
 	const uintptr_t send_character_item_return = 0x0049263D;
 
+	// 00492500 - CUser::SendCharacterItem
 	NAKED void send_character_item_hook()
 	{
 		__asm {
@@ -305,9 +306,10 @@ namespace packets::items::inventory
 		}
 	}
 
-	const uintptr_t add_item_drop_return = 0x0046A869;
+	const uintptr_t item_get_return = 0x0046A869;
 
-	NAKED void add_item_drop_hook()
+	// 0046A1E0 - CUser::ItemGet
+	NAKED void item_get_hook()
 	{
 		__asm {
 			pushad
@@ -315,13 +317,14 @@ namespace packets::items::inventory
 			mov ecx, edi
 			call packets::items::inventory::send_add_item_from_buffer
 			popad
-			jmp add_item_drop_return
+			jmp item_get_return
 		}
 	}
 
-	const uintptr_t add_item_gm_return = 0x0046C22F;
+	const uintptr_t item_create_return = 0x0046C22F;
 
-	NAKED void add_item_gm_hook()
+	// CUser::ItemCreate
+	NAKED void item_create_hook()
 	{
 		__asm {
 			pushad
@@ -329,13 +332,14 @@ namespace packets::items::inventory
 			mov ecx, [esp + 0x38]
 			call packets::items::inventory::send_add_item_from_buffer
 			popad
-			jmp add_item_gm_return
+			jmp item_create_return
 		}
 	}
 
-	const uintptr_t move_item_inventory_return = 0x00468E64;
+	const uintptr_t item_bag_to_bag_return = 0x00468E64;
 
-	NAKED void move_item_inventory_hook()
+	// CUser::ItemBagToBag
+	NAKED void item_bag_to_bag_hook()
 	{
 		__asm {
 			pushad
@@ -343,7 +347,7 @@ namespace packets::items::inventory
 			mov ecx, esi
 			call packets::items::inventory::send_move_item_from_buffer
 			popad
-			jmp move_item_inventory_return
+			jmp item_bag_to_bag_return
 		}
 	}
 
@@ -355,10 +359,10 @@ namespace packets::items::inventory
 		std::memcpy(data + 7, &gold, 4);
 	}
 
-	const uintptr_t original_user_send = 0x004ED0E0;
-	const uintptr_t drop_gold_return = 0x0046A372;
+	const uintptr_t item_get2_return = 0x0046A372;
 
-	NAKED void drop_gold_hook()
+	// 0046A1E0 - CUser::ItemGet
+	NAKED void item_get2_hook()
 	{
 		__asm {
 			pushad
@@ -366,14 +370,15 @@ namespace packets::items::inventory
 			call packets::items::inventory::drop_gold_fix
 			popad
 
-			call original_user_send
-			jmp drop_gold_return
+			call SConnectionSend
+			jmp item_get2_return
 		}
 	}
 
-	const uintptr_t drop_gold_b_return = 0x0046BC65;
+	const uintptr_t item_get_money_return = 0x0046BC65;
 
-	NAKED void drop_gold_b_hook()
+	// 0046BBA0 - CUser::ItemGetMoney
+	NAKED void item_get_money_hook()
 	{
 		__asm {
 			pushad
@@ -381,18 +386,18 @@ namespace packets::items::inventory
 			call packets::items::inventory::drop_gold_fix
 			popad
 
-			call original_user_send
-			jmp drop_gold_b_return
+			call SConnectionSend
+			jmp item_get_money_return
 		}
 	}
 
 	void hook()
 	{
 		utils::memory::hook((void*)0x0049251E, send_character_item_hook, 6);
-		utils::memory::hook((void*)0x0046A857, add_item_drop_hook, 6);
-		utils::memory::hook((void*)0x0046C218, add_item_gm_hook, 6);
-		utils::memory::hook((void*)0x00468E56, move_item_inventory_hook, 6);
-		utils::memory::hook((void*)0x0046A36D, drop_gold_hook, 5);
-		utils::memory::hook((void*)0x0046BC60, drop_gold_b_hook, 5);
+		utils::memory::hook((void*)0x0046C218, item_create_hook, 6);
+		utils::memory::hook((void*)0x00468E56, item_bag_to_bag_hook, 6);
+		utils::memory::hook((void*)0x0046A857, item_get_hook, 6);
+		utils::memory::hook((void*)0x0046A36D, item_get2_hook, 5);
+		utils::memory::hook((void*)0x0046BC60, item_get_money_hook, 5);
 	}
 }
