@@ -7,28 +7,6 @@ using namespace utils::buffer_reader;
 
 namespace packets::items::inventory
 {
-	void send_add_item(CUser* user, CItem* item, uint8_t bag, uint8_t slot)
-	{
-		AddItemPacket packet{};
-
-		packet.bag = bag;
-		packet.slot = slot;
-		packet.type = item->type;
-		packet.type_id = item->typeId;
-		packet.count = item->count;
-		packet.quality = item->quality;
-		packet.gem[0] = item->gem[0];
-		packet.gem[1] = item->gem[1];
-		packet.gem[2] = item->gem[2];
-		packet.gem[3] = item->gem[3];
-		packet.gem[4] = item->gem[4];
-		packet.gem[5] = item->gem[5];
-
-		std::memcpy(&packet.craftname, &item->craftname, 20);
-
-		user->Send((void*)&packet, sizeof(AddItemPacket));
-	}
-
 	void sort_items(CUser* user)
 	{
 		struct ItemSlot

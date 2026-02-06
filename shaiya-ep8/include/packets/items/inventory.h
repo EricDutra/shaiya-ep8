@@ -54,9 +54,6 @@ namespace packets::items::inventory
 
 #pragma pack(pop)
 
-	void send_add_item(CUser* user, CItem* item, uint8_t bag, uint8_t slot);
-	void send_move_item(CUser* user, uint8_t src_bag, uint8_t src_slot, CItem* src_item, uint8_t dst_bag, uint8_t dst_slot, CItem* dst_item, uint32_t gold);
-	void move_item(CUser* user, uint8_t current_bag, uint8_t current_slot, uint8_t destination_bag, uint8_t destination_slot);
 	void sort_items(CUser* user);
 	void send_all(CUser* user);
 	void __fastcall send_add_item_from_packet(CUser* user, void* packet);
