@@ -19,9 +19,9 @@ namespace packets::items::inventory
 		ItemSlot items[120];
 		int item_count = 0;
 
-		for (uint8_t bag = 0; bag < 5; bag++)
+		for (uint8_t bag = 0; bag < max_bag; bag++)
 		{
-			for (uint8_t slot = 0; slot < 24; slot++)
+			for (uint8_t slot = 0; slot < max_slot; slot++)
 			{
 				if (user->inventory[bag][slot] != nullptr)
 				{
@@ -81,7 +81,7 @@ namespace packets::items::inventory
 			}
 
 			target_slot++;
-			if (target_slot >= 24)
+			if (target_slot >= max_slot)
 			{
 				target_slot = 0;
 				target_bag++;
@@ -91,7 +91,7 @@ namespace packets::items::inventory
 
 	void send_all(CUser* user)
 	{
-		for (uint8_t slot = 0; slot < 24; slot++)
+		for (uint8_t slot = 0; slot < max_slot; slot++)
 		{
 			CItem* item = user->equipment[slot];
 
@@ -101,9 +101,9 @@ namespace packets::items::inventory
 			}
 		}
 
-		for (uint8_t bag = 0; bag < 5; bag++)
+		for (uint8_t bag = 0; bag < max_bag; bag++)
 		{
-			for (uint8_t slot = 0; slot < 24; slot++)
+			for (uint8_t slot = 0; slot < max_slot; slot++)
 			{
 				CItem* item = user->inventory[bag][slot];
 

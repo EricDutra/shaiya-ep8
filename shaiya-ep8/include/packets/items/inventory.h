@@ -7,6 +7,9 @@ using namespace packets;
 
 namespace packets::items::inventory
 {
+	constexpr uint8_t max_bag = 5;
+	constexpr uint8_t max_slot = 24;
+
 #pragma pack(push, 1)
 
 	struct AddItemPacket
