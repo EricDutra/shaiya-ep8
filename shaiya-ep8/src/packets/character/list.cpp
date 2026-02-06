@@ -8,7 +8,7 @@ namespace packets::character::list
 {
 	void __fastcall send(CUser* user, void* old_packet)
 	{
-		Character character{};
+		CharacterPacket character{};
 
 		character.opcode = packets::PacketType::CharacterList;
 
@@ -73,7 +73,7 @@ namespace packets::character::list
 
 		utils::buffer_reader::read_bytes(data, 65, character.name, 19);
 
-		user->Send((void*)&character, sizeof(Character));
+		user->Send((void*)&character, sizeof(CharacterPacket));
 	}
 
 	uintptr_t send_character_list_return = 0x0047B9B8;

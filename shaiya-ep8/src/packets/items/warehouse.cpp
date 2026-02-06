@@ -63,13 +63,13 @@ namespace packets::items::warehouse
 		user->Send((void*)&packet, sizeof(WarehouseItemPacket));
 	}
 
-	void __fastcall send_all_items_from_buffer(CUser* user, void* buffer)
+	void __fastcall send_all_items_from_packet(CUser* user, void* packet)
 	{
-		const uint8_t* data = static_cast<const uint8_t*>(buffer);
+		const uint8_t* data = static_cast<const uint8_t*>(packet);
 		size_t offset = 0;
 
-		WarehouseAllItemsPacket warehouse_packet{};
-		std::memset(&warehouse_packet.unk, 0, sizeof(WarehouseAllItemsPacket) - 2);
+		WarehouseAllItemsPacket response_packet{};
+		std::memset(&response_packet.unk, 0, sizeof(WarehouseAllItemsPacket) - 2);
 
 		offset += 2;
 		uint32_t unk = read_u32(data, offset);
@@ -77,81 +77,81 @@ namespace packets::items::warehouse
 		uint8_t item_count = read_u8(data, offset);
 		offset += 1;
 
-		warehouse_packet.unk = unk;
-		warehouse_packet.item_count = item_count;
+		response_packet.unk = unk;
+		response_packet.item_count = item_count;
 
 		for (int i = 0; i < item_count; i++)
 		{
-			warehouse_packet.item[i].slot = read_u8(data, offset);
+			response_packet.item[i].slot = read_u8(data, offset);
 			offset += 1;
-			warehouse_packet.item[i].type = read_u8(data, offset);
+			response_packet.item[i].type = read_u8(data, offset);
 			offset += 1;
-			warehouse_packet.item[i].type_id = read_u8(data, offset);
+			response_packet.item[i].type_id = read_u8(data, offset);
 			offset += 1;
-			warehouse_packet.item[i].quality = read_u16(data, offset);
+			response_packet.item[i].quality = read_u16(data, offset);
 			offset += 2;
-			warehouse_packet.item[i].gem[0] = read_u8(data, offset);
+			response_packet.item[i].gem[0] = read_u8(data, offset);
 			offset += 1;
-			warehouse_packet.item[i].gem[1] = read_u8(data, offset);
+			response_packet.item[i].gem[1] = read_u8(data, offset);
 			offset += 1;
-			warehouse_packet.item[i].gem[2] = read_u8(data, offset);
+			response_packet.item[i].gem[2] = read_u8(data, offset);
 			offset += 1;
-			warehouse_packet.item[i].gem[3] = read_u8(data, offset);
+			response_packet.item[i].gem[3] = read_u8(data, offset);
 			offset += 1;
-			warehouse_packet.item[i].gem[4] = read_u8(data, offset);
+			response_packet.item[i].gem[4] = read_u8(data, offset);
 			offset += 1;
-			warehouse_packet.item[i].gem[5] = read_u8(data, offset);
+			response_packet.item[i].gem[5] = read_u8(data, offset);
 			offset += 1;
-			warehouse_packet.item[i].count = read_u8(data, offset);
+			response_packet.item[i].count = read_u8(data, offset);
 			offset += 1;
 
-			read_bytes(data, offset, &warehouse_packet.item[i].craftname, 20);
+			read_bytes(data, offset, &response_packet.item[i].craftname, 20);
 			offset += 20;
 		}
 
-		user->Send((void*)&warehouse_packet, sizeof(WarehouseItem) * item_count + 7);
+		user->Send((void*)&response_packet, sizeof(WarehouseItem) * item_count + 7);
 	}
 
-	void __fastcall send_item_from_buffer(CUser* user, void* buffer)
+	void __fastcall send_item_from_packet(CUser* user, void* packet)
 	{
-		const uint8_t* data = static_cast<const uint8_t*>(buffer);
+		const uint8_t* data = static_cast<const uint8_t*>(packet);
 		size_t offset = 0;
 
-		WarehouseItemPacket item_packet{};
-		std::memset(&item_packet.unk, 0, sizeof(WarehouseItemPacket) - 2);
+		WarehouseItemPacket response_packet{};
+		std::memset(&response_packet.unk, 0, sizeof(WarehouseItemPacket) - 2);
 
-		item_packet.item_count = 1;
+		response_packet.item_count = 1;
 
 		offset += 2;
-		item_packet.unk = read_u32(data, offset);
+		response_packet.unk = read_u32(data, offset);
 		offset += 4;
 		offset += 1;
-		item_packet.slot = read_u8(data, offset);
+		response_packet.slot = read_u8(data, offset);
 		offset += 1;
-		item_packet.type = read_u8(data, offset);
+		response_packet.type = read_u8(data, offset);
 		offset += 1;
-		item_packet.type_id = read_u8(data, offset);
+		response_packet.type_id = read_u8(data, offset);
 		offset += 1;
-		item_packet.quality = read_u16(data, offset);
+		response_packet.quality = read_u16(data, offset);
 		offset += 2;
-		item_packet.gem[0] = read_u8(data, offset);
+		response_packet.gem[0] = read_u8(data, offset);
 		offset += 1;
-		item_packet.gem[1] = read_u8(data, offset);
+		response_packet.gem[1] = read_u8(data, offset);
 		offset += 1;
-		item_packet.gem[2] = read_u8(data, offset);
+		response_packet.gem[2] = read_u8(data, offset);
 		offset += 1;
-		item_packet.gem[3] = read_u8(data, offset);
+		response_packet.gem[3] = read_u8(data, offset);
 		offset += 1;
-		item_packet.gem[4] = read_u8(data, offset);
+		response_packet.gem[4] = read_u8(data, offset);
 		offset += 1;
-		item_packet.gem[5] = read_u8(data, offset);
+		response_packet.gem[5] = read_u8(data, offset);
 		offset += 1;
-		item_packet.count = read_u8(data, offset);
+		response_packet.count = read_u8(data, offset);
 		offset += 1;
 
-		read_bytes(data, offset, &item_packet.craftname, 20);
+		read_bytes(data, offset, &response_packet.craftname, 20);
 
-		user->Send((void*)&item_packet, sizeof(WarehouseItemPacket));
+		user->Send((void*)&response_packet, sizeof(WarehouseItemPacket));
 	}
 
 	const uintptr_t warehouse_all_items_return = 0x00492770;
@@ -162,7 +162,7 @@ namespace packets::items::warehouse
 			pushad
 			lea edx, [esp + 0x2C]
 			mov ecx, ebp
-			call packets::items::warehouse::send_all_items_from_buffer
+			call packets::items::warehouse::send_all_items_from_packet
 			popad
 			jmp warehouse_all_items_return
 		}
@@ -176,7 +176,7 @@ namespace packets::items::warehouse
 			pushad
 			lea edx, [esp + 0x34]
 			mov ecx, ebp
-			call packets::items::warehouse::send_item_from_buffer
+			call packets::items::warehouse::send_item_from_packet
 			popad
 			jmp warehouse_item_return
 		}
@@ -190,7 +190,7 @@ namespace packets::items::warehouse
 			pushad
 			lea edx, [esp + 0x40]
 			mov ecx, edi
-			call packets::items::warehouse::send_item_from_buffer
+			call packets::items::warehouse::send_item_from_packet
 			popad
 			jmp move_item_inventory_to_warehouse_return
 		}
@@ -204,7 +204,7 @@ namespace packets::items::warehouse
 			pushad
 			lea edx, [esp + 0x40]
 			mov ecx, edi
-			call packets::items::warehouse::send_item_from_buffer
+			call packets::items::warehouse::send_item_from_packet
 			popad
 			jmp move_item_warehouse_to_inventory_return
 		}
@@ -218,7 +218,7 @@ namespace packets::items::warehouse
 			pushad
 			lea edx, [esp + 0x30]
 			mov ecx, esi
-			call packets::items::warehouse::send_item_from_buffer
+			call packets::items::warehouse::send_item_from_packet
 			popad
 			jmp move_item_warehouse_to_warehouse_return
 		}

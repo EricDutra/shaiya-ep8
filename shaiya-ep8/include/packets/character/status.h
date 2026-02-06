@@ -8,7 +8,7 @@ using namespace shaiya;
 namespace packets::character::status
 {
 #pragma pack(push, 1)
-    struct Status
+    struct StatusPacket
     {
         PacketType opcode;
 

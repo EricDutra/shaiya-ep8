@@ -27,7 +27,7 @@ namespace packets::character::charname_check
 	{
 		std::string charname((char*)&packet->data[0]);
 
-		Response response{};
+		ResponsePacket response{};
 
 		response.opcode = packets::PacketType::CheckCharnameAvailable;
 
@@ -37,7 +37,7 @@ namespace packets::character::charname_check
 		{
 			utils::logger::warning("Character name validation failed: '%s'", charname.c_str());
 			response.available = false;
-			user->Send((void*)&response, sizeof(Response));
+			user->Send((void*)&response, sizeof(ResponsePacket));
 			return;
 		}
 
@@ -55,6 +55,6 @@ namespace packets::character::charname_check
 			}
 		}
 
-		user->Send((void*)&response, sizeof(Response));
+		user->Send((void*)&response, sizeof(ResponsePacket));
 	}
 }

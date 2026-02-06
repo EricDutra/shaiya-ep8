@@ -17,7 +17,7 @@ namespace packets::character::details
 
 	void __fastcall send(CUser* user)
 	{
-		Details details{};
+		DetailsPacket details{};
 
 		details.opcode = packets::PacketType::CharacterDetails;
 
@@ -57,7 +57,7 @@ namespace packets::character::details
 			std::memcpy(details.guild_name, user->guild->name, sizeof(details.guild_name));
 		}
 
-		user->Send((void*)&details, sizeof(Details));
+		user->Send((void*)&details, sizeof(DetailsPacket));
 	}
 
 	uintptr_t send_character_details_return = 0x004924DA;

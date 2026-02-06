@@ -8,7 +8,7 @@ using namespace shaiya;
 namespace packets::character::list
 {
 #pragma pack(push, 1)
-    struct Character
+    struct CharacterPacket
     {
 		PacketType opcode;
 
@@ -36,7 +36,6 @@ namespace packets::character::list
 
 		uint8_t  unk_1[6];
 
-		// equipment types
 		uint8_t  helmet_type;
 		uint8_t  armor_type;
 		uint8_t  pants_type;
@@ -52,7 +51,6 @@ namespace packets::character::list
 		uint8_t  costume_type;
 		uint8_t  wing_type;
 
-		// equipment type IDs
 		uint8_t  helmet_type_id;
 		uint8_t  armor_type_id;
 		uint8_t  pants_type_id;

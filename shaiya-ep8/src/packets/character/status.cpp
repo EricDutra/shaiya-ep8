@@ -5,7 +5,7 @@ namespace packets::character::status
 {
 	void __fastcall send(CUser* user)
 	{
-		Status status{};
+		StatusPacket status{};
 
 		status.opcode = packets::PacketType::CharacterStatus;
 
@@ -22,7 +22,7 @@ namespace packets::character::status
 		status.defense = user->physicalDefence;
 		status.magic_resistance = user->magicResist;
 
-		user->Send((void*)&status, sizeof(Status));
+		user->Send((void*)&status, sizeof(StatusPacket));
 	}
 
 	uintptr_t send_character_status_return = 0x00461005;

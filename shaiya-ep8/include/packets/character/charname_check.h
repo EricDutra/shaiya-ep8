@@ -8,7 +8,7 @@ using namespace shaiya;
 namespace packets::character::charname_check
 {
 #pragma pack(push, 1)
-	struct Response
+	struct ResponsePacket
 	{
 		PacketType opcode;
 		bool available;

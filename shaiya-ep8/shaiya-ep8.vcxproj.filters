@@ -123,6 +123,9 @@
     <ClCompile Include="src\packets\items\warehouse.cpp">
       <Filter>Source Files\packets\items</Filter>
     </ClCompile>
+    <ClCompile Include="src\shaiya\DBAgent.cpp">
+      <Filter>Source Files\shaiya</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utils\memory.h">
@@ -226,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="include\packets\items\warehouse.h">
       <Filter>Header Files\packets\items</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\DBAgent.h">
+      <Filter>Header Files\shaiya</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

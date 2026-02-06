@@ -43,105 +43,105 @@ namespace packets::items::player_market
 		user->Send((void*)&packet, sizeof(BuyPlayerMarketItemPacket));
 	}
 
-	void __fastcall send_items_from_buffer(CUser* user, void* buffer)
+	void __fastcall send_items_from_packet(CUser* user, void* packet)
 	{
-		const uint8_t* data = static_cast<const uint8_t*>(buffer);
+		const uint8_t* data = static_cast<const uint8_t*>(packet);
 		size_t offset = 2;
 
 		uint8_t item_count = read_u8(data, offset);
 		offset += 1;
 
-		PlayerMarketItemPacket packet{};
-		std::memset(&packet.item_count, 0, sizeof(PlayerMarketItemPacket) - 2);
+		PlayerMarketItemPacket response_packet{};
+		std::memset(&response_packet.item_count, 0, sizeof(PlayerMarketItemPacket) - 2);
 
-		packet.item_count = item_count;
+		response_packet.item_count = item_count;
 
 		for (int i = 0; i < item_count; i++)
 		{
-			packet.item[i].slot = read_u8(data, offset);
+			response_packet.item[i].slot = read_u8(data, offset);
 			offset += 1;
 
-			packet.item[i].price = read_u32(data, offset);
+			response_packet.item[i].price = read_u32(data, offset);
 			offset += 4;
 
-			packet.item[i].type = read_u8(data, offset);
+			response_packet.item[i].type = read_u8(data, offset);
 			offset += 1;
 
-			packet.item[i].type_id = read_u8(data, offset);
+			response_packet.item[i].type_id = read_u8(data, offset);
 			offset += 1;
 
-			packet.item[i].count = read_u8(data, offset);
+			response_packet.item[i].count = read_u8(data, offset);
 			offset += 1;
 
-			packet.item[i].quality = read_u16(data, offset);
+			response_packet.item[i].quality = read_u16(data, offset);
 			offset += 2;
 
 			for (int j = 0; j < 6; j++)
 			{
-				packet.item[i].gem[j] = read_u8(data, offset);
+				response_packet.item[i].gem[j] = read_u8(data, offset);
 				offset += 1;
 			}
 
-			read_bytes(data, offset, &packet.item[i].craftname, 20);
+			read_bytes(data, offset, &response_packet.item[i].craftname, 20);
 			offset += 20;
 
 			offset += 1;
 		}
 
-		uint16_t packet_size = packet.item_count * sizeof(PlayerMarketItem);
+		uint16_t packet_size = response_packet.item_count * sizeof(PlayerMarketItem);
 		packet_size += 3;
 
-		user->Send((void*)&packet, packet_size);
+		user->Send((void*)&response_packet, packet_size);
 	}
 
-	void __fastcall send_buy_result_from_buffer(CUser* user, void* buffer)
+	void __fastcall send_buy_result_from_packet(CUser* user, void* packet)
 	{
-		const uint8_t* data = static_cast<const uint8_t*>(buffer);
+		const uint8_t* data = static_cast<const uint8_t*>(packet);
 		size_t offset = 2;
 
-		BuyPlayerMarketItemPacket new_packet{};
-		std::memset(&new_packet.buy_status, 0, sizeof(BuyPlayerMarketItemPacket) - 2);
+		BuyPlayerMarketItemPacket response_packet{};
+		std::memset(&response_packet.buy_status, 0, sizeof(BuyPlayerMarketItemPacket) - 2);
 
-		new_packet.buy_status = read_u8(data, offset);
+		response_packet.buy_status = read_u8(data, offset);
 		offset += 1;
 
-		new_packet.current_player_gold = read_u32(data, offset);
+		response_packet.current_player_gold = read_u32(data, offset);
 		offset += 4;
 
-		new_packet.market_item_slot = read_u8(data, offset);
+		response_packet.market_item_slot = read_u8(data, offset);
 		offset += 1;
 
-		new_packet.unk = read_u8(data, offset);
+		response_packet.unk = read_u8(data, offset);
 		offset += 1;
 
-		new_packet.player_bag = read_u8(data, offset);
+		response_packet.player_bag = read_u8(data, offset);
 		offset += 1;
 
-		new_packet.player_slot = read_u8(data, offset);
+		response_packet.player_slot = read_u8(data, offset);
 		offset += 1;
 
-		new_packet.type = read_u8(data, offset);
+		response_packet.type = read_u8(data, offset);
 		offset += 1;
 
-		new_packet.type_id = read_u8(data, offset);
+		response_packet.type_id = read_u8(data, offset);
 		offset += 1;
 
-		new_packet.count = read_u8(data, offset);
+		response_packet.count = read_u8(data, offset);
 		offset += 1;
 
-		new_packet.quality = read_u16(data, offset);
+		response_packet.quality = read_u16(data, offset);
 		offset += 2;
 
 		for (int i = 0; i < 6; i++)
 		{
-			new_packet.gem[i] = read_u8(data, offset);
+			response_packet.gem[i] = read_u8(data, offset);
 			offset += 1;
 		}
 
-		read_bytes(data, offset, &new_packet.craftname, 20);
+		read_bytes(data, offset, &response_packet.craftname, 20);
 		offset += 20;
 
-		user->Send((void*)&new_packet, sizeof(BuyPlayerMarketItemPacket));
+		user->Send((void*)&response_packet, sizeof(BuyPlayerMarketItemPacket));
 	}
 
 	const uintptr_t player_market_items_return = 0x00487350;
@@ -151,7 +151,7 @@ namespace packets::items::player_market
 		__asm {
 			pushad
 			mov edx, eax
-			call packets::items::player_market::send_items_from_buffer
+			call packets::items::player_market::send_items_from_packet
 			popad
 			add esp, 0x08
 			jmp player_market_items_return
@@ -165,7 +165,7 @@ namespace packets::items::player_market
 		__asm {
 			pushad
 			lea edx, [esp + 0x88]
-			call packets::items::player_market::send_buy_result_from_buffer
+			call packets::items::player_market::send_buy_result_from_packet
 			popad
 			add esp, 0x08
 			jmp buy_player_market_item_return

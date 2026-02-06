@@ -69,92 +69,92 @@ namespace packets::items::blacksmith
 		user->Send((void*)&packet, sizeof(ExtractResultPacket));
 	}
 
-	void __fastcall send_enchant_result_from_old_packet(CUser* user, void* buffer)
+	void __fastcall send_enchant_result_from_old_packet(CUser* user, void* packet)
 	{
-		const uint8_t* data = static_cast<const uint8_t*>(buffer);
+		const uint8_t* data = static_cast<const uint8_t*>(packet);
 		size_t offset = 0;
 
-		EnchantResultPacket enchant_packet{};
-		std::memset(&enchant_packet.success_flag, 0, sizeof(EnchantResultPacket) - 2);
+		EnchantResultPacket response_packet{};
+		std::memset(&response_packet.success_flag, 0, sizeof(EnchantResultPacket) - 2);
 
-		enchant_packet.success_flag = read_u8(data, 2);
-		enchant_packet.lapisia_bag = read_u8(data, 3);
-		enchant_packet.lapisia_slot = read_u8(data, 4);
-		enchant_packet.lapisia_count = read_u8(data, 5);
-		enchant_packet.item_bag = read_u8(data, 9);
-		enchant_packet.item_slot = read_u8(data, 10);
-		enchant_packet.gold = read_u32(data, 11);
+		response_packet.success_flag = read_u8(data, 2);
+		response_packet.lapisia_bag = read_u8(data, 3);
+		response_packet.lapisia_slot = read_u8(data, 4);
+		response_packet.lapisia_count = read_u8(data, 5);
+		response_packet.item_bag = read_u8(data, 9);
+		response_packet.item_slot = read_u8(data, 10);
+		response_packet.gold = read_u32(data, 11);
 
-		read_bytes(data, 15, &enchant_packet.craftname, 20);
+		read_bytes(data, 15, &response_packet.craftname, 20);
 
-		user->Send((void*)&enchant_packet, sizeof(EnchantResultPacket));
+		user->Send((void*)&response_packet, sizeof(EnchantResultPacket));
 	}
 
-	void __fastcall send_link_result_from_old_packet(CUser* user, void* buffer)
+	void __fastcall send_link_result_from_old_packet(CUser* user, void* packet)
 	{
-		const uint8_t* data = static_cast<const uint8_t*>(buffer);
+		const uint8_t* data = static_cast<const uint8_t*>(packet);
 		size_t offset = 0;
 
-		LinkResultPacket link_packet{};
-		std::memset(&link_packet.success_flag, 0, sizeof(LinkResultPacket) - 2);
+		LinkResultPacket response_packet{};
+		std::memset(&response_packet.success_flag, 0, sizeof(LinkResultPacket) - 2);
 
-		link_packet.success_flag = read_u8(data, 2);
-		link_packet.lapis_bag = read_u8(data, 3);
-		link_packet.lapis_slot = read_u8(data, 4);
-		link_packet.lapis_count = read_u8(data, 5);
-		link_packet.item_bag = read_u8(data, 6);
-		link_packet.item_slot = read_u8(data, 7);
-		link_packet.can_break_equipment = read_u8(data, 8);
-		link_packet.lapis_id = read_u8(data, 9);
-		link_packet.gold = read_u32(data, 14);
-		link_packet.hammer_bag = read_u8(data, 18);
-		link_packet.hammer_slot = read_u8(data, 19);
+		response_packet.success_flag = read_u8(data, 2);
+		response_packet.lapis_bag = read_u8(data, 3);
+		response_packet.lapis_slot = read_u8(data, 4);
+		response_packet.lapis_count = read_u8(data, 5);
+		response_packet.item_bag = read_u8(data, 6);
+		response_packet.item_slot = read_u8(data, 7);
+		response_packet.can_break_equipment = read_u8(data, 8);
+		response_packet.lapis_id = read_u8(data, 9);
+		response_packet.gold = read_u32(data, 14);
+		response_packet.hammer_bag = read_u8(data, 18);
+		response_packet.hammer_slot = read_u8(data, 19);
 
-		user->Send((void*)&link_packet, sizeof(LinkResultPacket));
+		user->Send((void*)&response_packet, sizeof(LinkResultPacket));
 	}
 
-	void __fastcall send_extract_result_from_old_packet(CUser* user, void* buffer)
+	void __fastcall send_extract_result_from_old_packet(CUser* user, void* packet)
 	{
-		const uint8_t* data = static_cast<const uint8_t*>(buffer);
+		const uint8_t* data = static_cast<const uint8_t*>(packet);
 		size_t offset = 0;
 
-		ExtractResultPacket extract_packet{};
-		std::memset(&extract_packet.success_flag, 0, sizeof(ExtractResultPacket) - 2);
+		ExtractResultPacket response_packet{};
+		std::memset(&response_packet.success_flag, 0, sizeof(ExtractResultPacket) - 2);
 
-		extract_packet.success_flag = read_u8(data, 2);
-		extract_packet.item_bag = read_u8(data, 3);
-		extract_packet.item_slot = read_u8(data, 4);
-		extract_packet.lapis_index = read_u8(data, 5);
+		response_packet.success_flag = read_u8(data, 2);
+		response_packet.item_bag = read_u8(data, 3);
+		response_packet.item_slot = read_u8(data, 4);
+		response_packet.lapis_index = read_u8(data, 5);
 
 		size_t packet_index = 6;
 
 		for (int i = 0; i < 6; i++)
 		{
-			extract_packet.lapis_extracted_bag[i] = read_u8(data, packet_index);
+			response_packet.lapis_extracted_bag[i] = read_u8(data, packet_index);
 			packet_index++;
 		}
 
 		for (int i = 0; i < 6; i++)
 		{
-			extract_packet.lapis_extracted_slot[i] = read_u8(data, packet_index);
+			response_packet.lapis_extracted_slot[i] = read_u8(data, packet_index);
 			packet_index++;
 		}
 
 		for (int i = 0; i < 6; i++)
 		{
-			extract_packet.lapis_extracted_id[i] = read_u8(data, packet_index);
+			response_packet.lapis_extracted_id[i] = read_u8(data, packet_index);
 			packet_index++;
 		}
 
 		for (int i = 0; i < 6; i++)
 		{
-			extract_packet.lapis_extracted_count[i] = read_u8(data, packet_index);
+			response_packet.lapis_extracted_count[i] = read_u8(data, packet_index);
 			packet_index++;
 		}
 
-		extract_packet.gold = read_u32(data, packet_index);
+		response_packet.gold = read_u32(data, packet_index);
 
-		user->Send((void*)&extract_packet, sizeof(ExtractResultPacket));
+		user->Send((void*)&response_packet, sizeof(ExtractResultPacket));
 	}
 
 	const uintptr_t enchant_success_result_return = 0x0046CF8E;

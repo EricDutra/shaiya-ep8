@@ -37,6 +37,7 @@
     <ClCompile Include="src\packets\items\trade.cpp" />
     <ClCompile Include="src\packets\items\warehouse.cpp" />
     <ClCompile Include="src\shaiya\CUser.cpp" />
+    <ClCompile Include="src\shaiya\DBAgent.cpp" />
     <ClCompile Include="src\utils\buffer_reader.cpp" />
     <ClCompile Include="src\utils\ini_reader.cpp" />
     <ClCompile Include="src\utils\logger.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="include\shaiya\CQuest.h" />
     <ClInclude Include="include\shaiya\CSkill.h" />
     <ClInclude Include="include\shaiya\CUser.h" />
+    <ClInclude Include="include\shaiya\DBAgent.h" />
     <ClInclude Include="include\shaiya\SConnection.h" />
     <ClInclude Include="include\shaiya\SkillInfo.h" />
     <ClInclude Include="include\shaiya\SNode.h" />

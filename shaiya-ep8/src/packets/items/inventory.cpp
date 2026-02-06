@@ -7,10 +7,9 @@ using namespace utils::buffer_reader;
 
 namespace packets::items::inventory
 {
-	void send_add_item(CUser* user, uint8_t bag, uint8_t slot, CItem* item)
+	void send_add_item(CUser* user, CItem* item, uint8_t bag, uint8_t slot)
 	{
-		AddInventoryItemPacket packet{};
-		std::memset(&packet.bag, 0, sizeof(AddInventoryItemPacket) - 2);
+		AddItemPacket packet{};
 
 		packet.bag = bag;
 		packet.slot = slot;
@@ -27,92 +26,7 @@ namespace packets::items::inventory
 
 		std::memcpy(&packet.craftname, &item->craftname, 20);
 
-		user->Send((void*)&packet, sizeof(AddInventoryItemPacket));
-	}
-
-	void send_move_item(CUser* user, uint8_t src_bag, uint8_t src_slot, CItem* src_item, uint8_t dst_bag, uint8_t dst_slot, CItem* dst_item, uint32_t gold)
-	{
-		MoveInventoryItemPacket packet{};
-		std::memset(&packet.bag, 0, sizeof(MoveInventoryItemPacket) - 2);
-
-		packet.bag = src_bag;
-		packet.slot = src_slot;
-
-		if (dst_item != nullptr)
-		{
-			packet.type = dst_item->type;
-			packet.type_id = dst_item->typeId;
-			packet.count = dst_item->count;
-			packet.quality = dst_item->quality;
-			packet.gem_first_item[0] = dst_item->gem[0];
-			packet.gem_first_item[1] = dst_item->gem[1];
-			packet.gem_first_item[2] = dst_item->gem[2];
-			packet.gem_first_item[3] = dst_item->gem[3];
-			packet.gem_first_item[4] = dst_item->gem[4];
-			packet.gem_first_item[5] = dst_item->gem[5];
-
-			std::memcpy(&packet.craftname_first_item, &dst_item->craftname, 20);
-		}
-
-		packet.bag2 = dst_bag;
-		packet.slot2 = dst_slot;
-		packet.type2 = src_item->type;
-		packet.type_id2 = src_item->typeId;
-		packet.count2 = src_item->count;
-		packet.quality2 = src_item->quality;
-		packet.gem_second_item[0] = src_item->gem[0];
-		packet.gem_second_item[1] = src_item->gem[1];
-		packet.gem_second_item[2] = src_item->gem[2];
-		packet.gem_second_item[3] = src_item->gem[3];
-		packet.gem_second_item[4] = src_item->gem[4];
-		packet.gem_second_item[5] = src_item->gem[5];
-
-		std::memcpy(&packet.craftname_second_item, &src_item->craftname, 20);
-
-		packet.gold = gold;
-
-		user->Send((void*)&packet, sizeof(MoveInventoryItemPacket));
-	}
-
-	void move_item(CUser* user, uint8_t current_bag, uint8_t current_slot, uint8_t destination_bag, uint8_t destination_slot)
-	{
-		CItem* item_at_current_slot = user->inventory[current_bag][current_slot];
-		CItem* item_at_destination_slot = user->inventory[destination_bag][destination_slot];
-
-		if (item_at_current_slot == nullptr) return;
-
-		user->inventory[destination_bag][destination_slot] = item_at_current_slot;
-		user->inventory[current_bag][current_slot] = nullptr;
-
-		if (item_at_destination_slot != nullptr)
-		{
-			user->inventory[current_bag][current_slot] = item_at_destination_slot;
-		}
-
-		send_move_item(user, current_bag + 1, current_slot, item_at_current_slot, destination_bag + 1, destination_slot, item_at_destination_slot, user->gold);
-
-		/*
-		struct db_agent_move_item_inventory
-		{
-			uint32_t user_id;
-			uint8_t destination_bag;
-			uint8_t destination_slot;
-			uint8_t current_bag;
-			uint8_t current_slot;
-			uint8_t current_count;
-			uint8_t destination_count;
-		};
-
-		db_agent_move_item_inventory db_packet;
-		db_packet.user_id = user->userId;
-		db_packet.destination_bag = destination_bag + 1;
-		db_packet.destination_slot = destination_slot;
-		db_packet.current_bag = current_bag + 1;
-		db_packet.current_slot = current_slot;
-		db_packet.current_count = item_at_current_slot->count;
-		db_packet.destination_count = item_at_destination_slot ? item_at_destination_slot->count : 0;
-		DBAgent::Send((uint32_t)&db_packet, sizeof(db_agent_move_item_inventory));
-		*/
+		user->Send((void*)&packet, sizeof(AddItemPacket));
 	}
 
 	void sort_items(CUser* user)
@@ -172,7 +86,7 @@ namespace packets::items::inventory
 		{
 			if (items[i].bag != target_bag || items[i].slot != target_slot)
 			{
-				move_item(user, items[i].bag, items[i].slot, target_bag, target_slot);
+				user->MoveItem(items[i].bag, items[i].slot, target_bag, target_slot);
 
 				for (int j = i + 1; j < item_count; j++)
 				{
@@ -223,72 +137,72 @@ namespace packets::items::inventory
 		}
 	}
 
-	void __fastcall send_add_item_from_buffer(CUser* user, void* buffer)
+	void __fastcall send_add_item_from_packet(CUser* user, void* packet)
 	{
-		const uint8_t* data = static_cast<const uint8_t*>(buffer);
+		const uint8_t* data = static_cast<const uint8_t*>(packet);
 
-		AddInventoryItemPacket packet{};
-		std::memset(&packet.bag, 0, sizeof(AddInventoryItemPacket) - 2);
+		AddItemPacket response_packet{};
+		std::memset(&response_packet.bag, 0, sizeof(AddItemPacket) - 2);
 
-		packet.bag = read_u8(data, 2);
-		packet.slot = read_u8(data, 3);
-		packet.type = read_u8(data, 4);
-		packet.type_id = read_u8(data, 5);
-		packet.count = read_u8(data, 6);
-		packet.quality = read_u16(data, 7);
-		packet.gem[0] = read_u8(data, 9);
-		packet.gem[1] = read_u8(data, 10);
-		packet.gem[2] = read_u8(data, 11);
-		packet.gem[3] = read_u8(data, 12);
-		packet.gem[4] = read_u8(data, 13);
-		packet.gem[5] = read_u8(data, 14);
+		response_packet.bag = read_u8(data, 2);
+		response_packet.slot = read_u8(data, 3);
+		response_packet.type = read_u8(data, 4);
+		response_packet.type_id = read_u8(data, 5);
+		response_packet.count = read_u8(data, 6);
+		response_packet.quality = read_u16(data, 7);
+		response_packet.gem[0] = read_u8(data, 9);
+		response_packet.gem[1] = read_u8(data, 10);
+		response_packet.gem[2] = read_u8(data, 11);
+		response_packet.gem[3] = read_u8(data, 12);
+		response_packet.gem[4] = read_u8(data, 13);
+		response_packet.gem[5] = read_u8(data, 14);
 
-		read_bytes(data, 15, &packet.craftname, 20);
+		read_bytes(data, 15, &response_packet.craftname, 20);
 
-		user->Send((void*)&packet, sizeof(AddInventoryItemPacket));
+		user->Send((void*)&response_packet, sizeof(AddItemPacket));
 	}
 
-	void __fastcall send_move_item_from_buffer(CUser* user, void* buffer)
+	void __fastcall send_move_item_from_packet(CUser* user, void* packet)
 	{
-		const uint8_t* data = static_cast<const uint8_t*>(buffer);
+		const uint8_t* data = static_cast<const uint8_t*>(packet);
 
-		MoveInventoryItemPacket packet{};
-		std::memset(&packet.bag, 0, sizeof(MoveInventoryItemPacket) - 2);
+		MoveItemPacket response_packet{};
+		std::memset(&response_packet.bag, 0, sizeof(MoveItemPacket) - 2);
 
-		packet.bag = read_u8(data, 2);
-		packet.slot = read_u8(data, 3);
-		packet.type = read_u8(data, 4);
-		packet.type_id = read_u8(data, 5);
-		packet.count = read_u8(data, 6);
-		packet.quality = read_u16(data, 7);
-		packet.gem_first_item[0] = read_u8(data, 9);
-		packet.gem_first_item[1] = read_u8(data, 10);
-		packet.gem_first_item[2] = read_u8(data, 11);
-		packet.gem_first_item[3] = read_u8(data, 12);
-		packet.gem_first_item[4] = read_u8(data, 13);
-		packet.gem_first_item[5] = read_u8(data, 14);
+		response_packet.bag = read_u8(data, 2);
+		response_packet.slot = read_u8(data, 3);
+		response_packet.type = read_u8(data, 4);
+		response_packet.type_id = read_u8(data, 5);
+		response_packet.count = read_u8(data, 6);
+		response_packet.quality = read_u16(data, 7);
+		response_packet.gem_first_item[0] = read_u8(data, 9);
+		response_packet.gem_first_item[1] = read_u8(data, 10);
+		response_packet.gem_first_item[2] = read_u8(data, 11);
+		response_packet.gem_first_item[3] = read_u8(data, 12);
+		response_packet.gem_first_item[4] = read_u8(data, 13);
+		response_packet.gem_first_item[5] = read_u8(data, 14);
 
-		read_bytes(data, 15, &packet.craftname_first_item, 20);
+		read_bytes(data, 15, &response_packet.craftname_first_item, 20);
 
-		packet.bag2 = read_u8(data, 36);
-		packet.slot2 = read_u8(data, 37);
-		packet.type2 = read_u8(data, 38);
-		packet.type_id2 = read_u8(data, 39);
-		packet.count2 = read_u8(data, 40);
-		packet.quality2 = read_u16(data, 41);
+		response_packet.bag2 = read_u8(data, 36);
+		response_packet.slot2 = read_u8(data, 37);
+		response_packet.type2 = read_u8(data, 38);
+		response_packet.type_id2 = read_u8(data, 39);
+		response_packet.count2 = read_u8(data, 40);
+		response_packet.quality2 = read_u16(data, 41);
 
-		packet.gem_second_item[0] = read_u8(data, 43);
-		packet.gem_second_item[1] = read_u8(data, 44);
-		packet.gem_second_item[2] = read_u8(data, 45);
-		packet.gem_second_item[3] = read_u8(data, 46);
-		packet.gem_second_item[4] = read_u8(data, 47);
-		packet.gem_second_item[5] = read_u8(data, 48);
+		response_packet.gem_second_item[0] = read_u8(data, 43);
+		response_packet.gem_second_item[1] = read_u8(data, 44);
+		response_packet.gem_second_item[2] = read_u8(data, 45);
+		response_packet.gem_second_item[3] = read_u8(data, 46);
+		response_packet.gem_second_item[4] = read_u8(data, 47);
+		response_packet.gem_second_item[5] = read_u8(data, 48);
 
-		read_bytes(data, 49, &packet.craftname_second_item, 20);
+		read_bytes(data, 49, &response_packet.craftname_second_item, 20);
 
-		packet.gold = user->gold;
+		response_packet.gold = user->gold;
 
-		user->Send((void*)&packet, sizeof(MoveInventoryItemPacket));
+		user->Send((void*)&response_packet, sizeof(MoveItemPacket));
 	}
 
 	const uintptr_t send_character_item_return = 0x0049263D;
@@ -315,7 +229,7 @@ namespace packets::items::inventory
 			pushad
 			lea edx, [esp + 0x60]
 			mov ecx, edi
-			call packets::items::inventory::send_add_item_from_buffer
+			call packets::items::inventory::send_add_item_from_packet
 			popad
 			jmp item_get_return
 		}
@@ -330,7 +244,7 @@ namespace packets::items::inventory
 			pushad
 			lea edx, [esp + 0xB4]
 			mov ecx, [esp + 0x38]
-			call packets::items::inventory::send_add_item_from_buffer
+			call packets::items::inventory::send_add_item_from_packet
 			popad
 			jmp item_create_return
 		}
@@ -345,15 +259,15 @@ namespace packets::items::inventory
 			pushad
 			lea edx, [esp + 0x54]
 			mov ecx, esi
-			call packets::items::inventory::send_move_item_from_buffer
+			call packets::items::inventory::send_move_item_from_packet
 			popad
 			jmp item_bag_to_bag_return
 		}
 	}
 
-	void __fastcall drop_gold_fix(void* buffer)
+	void __fastcall drop_gold_fix(void* packet)
 	{
-		uint8_t* data = static_cast<uint8_t*>(buffer);
+		uint8_t* data = static_cast<uint8_t*>(packet);
 		uint32_t gold = read_u32(data, 5);
 		std::memset(data + 5, 0, 4);
 		std::memcpy(data + 7, &gold, 4);

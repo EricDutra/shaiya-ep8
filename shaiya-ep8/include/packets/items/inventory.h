@@ -9,9 +9,9 @@ namespace packets::items::inventory
 {
 #pragma pack(push, 1)
 
-	struct AddInventoryItemPacket
+	struct AddItemPacket
 	{
-		PacketType opcode = PacketType::AddInventoryItem;
+		PacketType opcode = PacketType::AddItem;
 		uint8_t bag = 0;
 		uint8_t slot = 0;
 		uint8_t type = 0;
@@ -26,9 +26,9 @@ namespace packets::items::inventory
 		char craftname[20];
 	};
 
-	struct MoveInventoryItemPacket
+	struct MoveItemPacket
 	{
-		PacketType opcode = PacketType::MoveInventoryItem;
+		PacketType opcode = PacketType::MoveItem;
 		uint8_t bag = 0;
 		uint8_t slot = 0;
 		uint8_t type = 0;
@@ -52,24 +52,14 @@ namespace packets::items::inventory
 		uint32_t gold = 0;
 	};
 
-	struct UpdateItemStatePacket
-	{
-		PacketType opcode = PacketType::UpdateItemState;
-		uint8_t bag;
-		uint8_t slot;
-		uint8_t type;
-		uint8_t type_id;
-		uint8_t count;
-	};
-
 #pragma pack(pop)
 
-	void send_add_item(CUser* user, uint8_t bag, uint8_t slot, CItem* item);
+	void send_add_item(CUser* user, CItem* item, uint8_t bag, uint8_t slot);
 	void send_move_item(CUser* user, uint8_t src_bag, uint8_t src_slot, CItem* src_item, uint8_t dst_bag, uint8_t dst_slot, CItem* dst_item, uint32_t gold);
 	void move_item(CUser* user, uint8_t current_bag, uint8_t current_slot, uint8_t destination_bag, uint8_t destination_slot);
 	void sort_items(CUser* user);
 	void send_all(CUser* user);
-	void __fastcall send_add_item_from_buffer(CUser* user, void* buffer);
-	void __fastcall send_move_item_from_buffer(CUser* user, void* buffer);
+	void __fastcall send_add_item_from_packet(CUser* user, void* packet);
+	void __fastcall send_move_item_from_packet(CUser* user, void* packet);
 	void hook();
 }
