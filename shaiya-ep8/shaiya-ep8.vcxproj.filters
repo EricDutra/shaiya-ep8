@@ -126,6 +126,12 @@
     <ClCompile Include="src\shaiya\DBAgent.cpp">
       <Filter>Source Files\shaiya</Filter>
     </ClCompile>
+    <ClCompile Include="src\packets\character\attribute.cpp">
+      <Filter>Source Files\packets\character</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\world.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Utils\memory.h">
@@ -232,6 +238,12 @@
     </ClInclude>
     <ClInclude Include="include\shaiya\DBAgent.h">
       <Filter>Header Files\shaiya</Filter>
+    </ClInclude>
+    <ClInclude Include="include\packets\character\attribute.h">
+      <Filter>Header Files\packets\character</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\world.h">
+      <Filter>Header Files\game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

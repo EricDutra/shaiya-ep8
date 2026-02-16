@@ -76,7 +76,7 @@ namespace packets::character::list
 		user->Send((void*)&character, sizeof(CharacterPacket));
 	}
 
-	uintptr_t send_character_list_return = 0x0047B9B8;
+	const uintptr_t send_character_list_return = 0x0047B9B8;
 
 	NAKED void send_character_list_hook()
 	{

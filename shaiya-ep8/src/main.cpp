@@ -8,6 +8,7 @@
 #include "include/game/expand_inventory_slots.h"
 #include "include/game/expand_item_quality_memory.h"
 #include "include/game/expand_user_memory.h"
+#include "include/game/world.h"
 #include "include/packets/items/inventory.h"
 #include "include/packets/items/warehouse.h"
 #include "include/packets/items/trade.h"
@@ -34,8 +35,10 @@ void init()
 	game::expand_inventory_slots::apply();
 	game::expand_item_quality_memory::apply();
 	game::expand_user_memory::apply();
+	game::world::hook();
 
-    utils::logger::info("Shaiya EP8 (https://github.com/EricDutra/shaiya-ep8) DLL initialized");
+    utils::logger::info("Shaiya EP8 DLL initialized");
+    utils::logger::info("https://github.com/EricDutra/shaiya-ep8");
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)

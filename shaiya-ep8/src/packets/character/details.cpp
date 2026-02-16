@@ -60,7 +60,7 @@ namespace packets::character::details
 		user->Send((void*)&details, sizeof(DetailsPacket));
 	}
 
-	uintptr_t send_character_details_return = 0x004924DA;
+	const uintptr_t send_character_details_return = 0x004924DA;
 
 	NAKED void send_character_details_hook()
 	{

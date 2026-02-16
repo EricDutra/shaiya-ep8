@@ -27,7 +27,7 @@ namespace packets
 		BuyPlayerMarketItem = 0x230D,
 		DuelItem = 0x240D,
 		Ping = 0xA303,
-		UpdateUserInfo = 0xF701
+		AttributeSet = 0xF701
 	};
 
 	struct Packet

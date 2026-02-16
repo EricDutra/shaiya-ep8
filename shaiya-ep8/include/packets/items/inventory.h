@@ -59,7 +59,7 @@ namespace packets::items::inventory
 
 	void sort_items(CUser* user);
 	void send_all(CUser* user);
-	void __fastcall send_add_item_from_packet(CUser* user, void* packet);
-	void __fastcall send_move_item_from_packet(CUser* user, void* packet);
+	void __fastcall send_add_item_from_old_packet(CUser* user, void* packet);
+	void __fastcall send_move_item_from_old_packet(CUser* user, void* packet);
 	void hook();
 }

@@ -23,7 +23,7 @@ namespace packets::items::inventory
 		{
 			for (uint8_t slot = 0; slot < max_slot; slot++)
 			{
-				if (user->inventory[bag][slot] != nullptr)
+				if (user->inventory[bag][slot])
 				{
 					items[item_count].item = user->inventory[bag][slot];
 					items[item_count].bag = bag;
@@ -115,7 +115,7 @@ namespace packets::items::inventory
 		}
 	}
 
-	void __fastcall send_add_item_from_packet(CUser* user, void* packet)
+	void __fastcall send_add_item_from_old_packet(CUser* user, void* packet)
 	{
 		const uint8_t* data = static_cast<const uint8_t*>(packet);
 
@@ -140,7 +140,7 @@ namespace packets::items::inventory
 		user->Send((void*)&response_packet, sizeof(AddItemPacket));
 	}
 
-	void __fastcall send_move_item_from_packet(CUser* user, void* packet)
+	void __fastcall send_move_item_from_old_packet(CUser* user, void* packet)
 	{
 		const uint8_t* data = static_cast<const uint8_t*>(packet);
 
@@ -207,7 +207,7 @@ namespace packets::items::inventory
 			pushad
 			lea edx, [esp + 0x60]
 			mov ecx, edi
-			call packets::items::inventory::send_add_item_from_packet
+			call packets::items::inventory::send_add_item_from_old_packet
 			popad
 			jmp item_get_return
 		}
@@ -222,7 +222,7 @@ namespace packets::items::inventory
 			pushad
 			lea edx, [esp + 0xB4]
 			mov ecx, [esp + 0x38]
-			call packets::items::inventory::send_add_item_from_packet
+			call packets::items::inventory::send_add_item_from_old_packet
 			popad
 			jmp item_create_return
 		}
@@ -237,7 +237,7 @@ namespace packets::items::inventory
 			pushad
 			lea edx, [esp + 0x54]
 			mov ecx, esi
-			call packets::items::inventory::send_move_item_from_packet
+			call packets::items::inventory::send_move_item_from_old_packet
 			popad
 			jmp item_bag_to_bag_return
 		}

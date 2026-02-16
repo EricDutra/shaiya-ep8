@@ -24,7 +24,9 @@
     <ClCompile Include="src\game\expand_inventory_slots.cpp" />
     <ClCompile Include="src\game\expand_item_quality_memory.cpp" />
     <ClCompile Include="src\game\expand_user_memory.cpp" />
+    <ClCompile Include="src\game\world.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\packets\character\attribute.cpp" />
     <ClCompile Include="src\packets\character\charname_check.cpp" />
     <ClCompile Include="src\packets\character\details.cpp" />
     <ClCompile Include="src\packets\character\list.cpp" />
@@ -49,6 +51,8 @@
     <ClInclude Include="include\game\expand_inventory_slots.h" />
     <ClInclude Include="include\game\expand_item_quality_memory.h" />
     <ClInclude Include="include\game\expand_user_memory.h" />
+    <ClInclude Include="include\game\world.h" />
+    <ClInclude Include="include\packets\character\attribute.h" />
     <ClInclude Include="include\packets\character\charname_check.h" />
     <ClInclude Include="include\packets\character\details.h" />
     <ClInclude Include="include\packets\character\list.h" />

@@ -10,7 +10,7 @@ namespace packets::items::guild_warehouse
 {
 #pragma pack(push, 1)
 
-	struct GuildWarehouseAddRemoveItemPacket
+	struct GuildWarehouseItemPacket
 	{
 		PacketType opcode = PacketType::GuildWarehouseItemList;
 		uint8_t slot = 0;
@@ -25,7 +25,7 @@ namespace packets::items::guild_warehouse
 		char craftname[20];
 	};
 
-	struct GuildWarehouseFakeItemListPacket
+	struct GuildWarehouseItemListPacket
 	{
 		PacketType opcode = PacketType::GuildWarehouseItemList;
 		uint8_t item_count = 1;
@@ -41,7 +41,7 @@ namespace packets::items::guild_warehouse
 		char craftname[20];
 	};
 
-	struct GuildWarehouseOldItemUnit
+	struct GuildWarehouseOldItem
 	{
 		uint8_t slot;
 		uint8_t type;
@@ -57,7 +57,7 @@ namespace packets::items::guild_warehouse
 	{
 		uint16_t opcode;
 		uint8_t item_count;
-		GuildWarehouseOldItemUnit item_unit[240];
+		GuildWarehouseOldItem item[240];
 	};
 
 	struct GuildWarehouseOldAddItem
@@ -73,19 +73,9 @@ namespace packets::items::guild_warehouse
 		uint8_t unk;
 	};
 
-	struct UpdateUserInfoPacket
-	{
-		PacketType opcode = PacketType::UpdateUserInfo;
-		uint8_t id = 0;
-		uint32_t info = 0;
-	};
-
 #pragma pack(pop)
 
-	void send_items(CUser* user, uint8_t item_count);
-	void send_add_item(CUser* user, CItem* item, uint8_t slot);
-	void send_remove_item(CUser* user, CItem* item, uint8_t slot);
-	void send_add_item_to_all(CUser* user, CGuild* guild, CItem* item, uint8_t slot);
-	void send_move_item(CGuild* guild, CItem* src_item, uint8_t src_bag, uint8_t src_slot, CItem* dst_item, uint8_t dst_bag, uint8_t dst_slot);
+	//void send_items(CUser* user, uint8_t item_count);
+	
 	void hook();
 }

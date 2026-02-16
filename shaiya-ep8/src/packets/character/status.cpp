@@ -25,7 +25,7 @@ namespace packets::character::status
 		user->Send((void*)&status, sizeof(StatusPacket));
 	}
 
-	uintptr_t send_character_status_return = 0x00461005;
+	const uintptr_t send_character_status_return = 0x00461005;
 
 	NAKED void send_character_status_hook()
 	{
